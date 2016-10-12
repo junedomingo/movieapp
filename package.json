@@ -20,6 +20,7 @@
     "react-native": "0.32.0",
     "react-native-navigation": "^2.0.0-experimental.131",
     "redux": "^3.6.0"
+    "react-native-vector-icons": "^2.1.0",
   },
   "jest": {
     "preset": "jest-react-native"
