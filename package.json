@@ -18,6 +18,8 @@
     "eslint-watch": "^2.1.14",
     "react": "15.3.2",
     "react-native": "0.32.0",
+    "react-native-navigation": "^2.0.0-experimental.131",
+    "redux": "^3.6.0"
   },
   "jest": {
     "preset": "jest-react-native"
