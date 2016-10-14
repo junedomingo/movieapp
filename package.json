@@ -17,10 +17,12 @@
     "eslint-plugin-react": "^6.3.0",
     "eslint-plugin-react-native": "^2.0.0",
     "eslint-watch": "^2.1.14",
+    "lodash": "^4.16.4",
     "react": "15.3.2",
     "react-native": "0.32.0",
     "react-native-navigation": "^2.0.0-experimental.131",
     "react-native-scrollable-tab-view": "^0.6.0",
+    "react-native-swiper": "^1.5.1",
     "react-native-vector-icons": "^2.1.0",
     "react-redux": "^4.4.5",
     "redux": "^3.6.0",
@@ -36,6 +38,7 @@
     "jest-react-native": "16.0.0",
     "react-native-dotenv": "0.0.2",
     "react-test-renderer": "15.3.2",
+    "reactotron-react-native": "^1.1.4",
     "redux-immutable-state-invariant": "^1.2.4",
     "redux-logger": "^2.7.0"
   }
