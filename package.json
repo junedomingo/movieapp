@@ -20,6 +20,7 @@
     "lodash": "^4.16.4",
     "react": "15.3.2",
     "react-native": "0.32.0",
+    "react-native-linear-gradient": "^1.5.13",
     "react-native-navigation": "^2.0.0-experimental.131",
     "react-native-scrollable-tab-view": "^0.6.0",
     "react-native-swiper": "^1.5.1",
