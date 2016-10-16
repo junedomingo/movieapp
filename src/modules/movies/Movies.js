@@ -4,7 +4,6 @@ import React, {
 	Component
 } from 'react';
 import {
-	StyleSheet,
 	ScrollView,
 	View,
 	Text
@@ -13,6 +12,7 @@ import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import styles from './styles/Movies';
 import * as moviesActions from './movies.actions';
 import ProgressBar from '../_global/ProgressBar';
 import CardThumb from './components/CardThumb';
@@ -68,35 +68,6 @@ class Movies extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		backgroundColor: 'black'
-	},
-	progressBar: {
-		backgroundColor: 'black',
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center'
-	},
-	listHeading: {
-		paddingHorizontal: 16,
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-		marginBottom: 15,
-		marginTop: 30
-	},
-	listHeadingLeft: {
-		color: 'white',
-		fontWeight: 'bold',
-		fontSize: 18
-	},
-	listHeadingRight: {
-		color: 'white',
-		fontSize: 16
-	}
-});
 
 Movies.propTypes = {
 	actions: PropTypes.object.isRequired,
