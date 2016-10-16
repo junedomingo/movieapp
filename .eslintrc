@@ -40,6 +40,7 @@
 		"jsx-quotes": 1,
 		"linebreak-style": 0,
 		"max-len": 0,
+        "new-cap": 0,
 		"no-alert": 0,
 		"no-console": 1,
 		"no-debugger": 1,
