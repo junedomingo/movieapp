@@ -37,7 +37,7 @@ export function retrievePopularMovies(page) {
 			dispatch(retrievePopularMoviesSuccess(res));
 		})
 		.catch(error => {
-			console.log(error); //eslint-disable-line
+			console.log('Popular', error); //eslint-disable-line
 		});
 	};
 }
@@ -57,7 +57,7 @@ export function retrieveTopRatedMovies(page) {
 			dispatch(retrieveTopRatedMoviesSuccess(res));
 		})
 		.catch(error => {
-			console.log(error); //eslint-disable-line
+			console.log('Top Rated', error); //eslint-disable-line
 		});
 	};
 }
@@ -77,7 +77,7 @@ export function retrieveUpcomingMovies(page) {
 			dispatch(retrieveUpcomingMoviesSuccess(res));
 		})
 		.catch(error => {
-			console.log(error); //eslint-disable-line
+			console.log('Upcoming', error); //eslint-disable-line
 		});
 	};
 }
@@ -97,7 +97,7 @@ export function retrieveNowPlayingMovies(page) {
 			dispatch(retrieveNowPlayingMoviesSuccess(res));
 		})
 		.catch(error => {
-			console.log(error); //eslint-disable-line
+			console.log('Now Playing', error); //eslint-disable-line
 		});
 	};
 }
