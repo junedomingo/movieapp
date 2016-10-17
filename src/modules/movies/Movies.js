@@ -79,7 +79,11 @@ class Movies extends Component {
 					<View style={styles.listHeading}>
 						<Text style={styles.listHeadingLeft}>Popular</Text>
 						<TouchableOpacity>
-							<Text style={styles.listHeadingRight} onPress={this._seeMoviesList.bind(this, 'popular', 'Popular')}>See all</Text>
+							<Text
+								style={styles.listHeadingRight}
+								onPress={this._seeMoviesList.bind(this, 'popular', 'Popular')}>
+								See all
+							</Text>
 						</TouchableOpacity>
 					</View>
 					<ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -91,19 +95,29 @@ class Movies extends Component {
 						<TouchableOpacity activeOpacity={0.7}>
 							<View style={styles.browseListItem}>
 								{iconPlay}
-								<Text style={styles.browseListItemText} onPress={this._seeMoviesList.bind(this, 'now_playing', 'Now Playing')}>Now Playing</Text>
+								<Text
+									style={styles.browseListItemText}
+									onPress={this._seeMoviesList.bind(this, 'now_playing', 'Now Playing')}>
+									Now Playing
+								</Text>
 							</View>
 						</TouchableOpacity>
 						<TouchableOpacity activeOpacity={0.7}>
 							<View style={styles.browseListItem}>
 								{iconTop}
-								<Text style={styles.browseListItemText} onPress={this._seeMoviesList.bind(this, 'top_rated', 'Top Rated')}>Top Rated</Text>
+								<Text style={styles.browseListItemText} onPress={this._seeMoviesList.bind(this, 'top_rated', 'Top Rated')}>
+									Top Rated
+								</Text>
 							</View>
 						</TouchableOpacity>
 						<TouchableOpacity activeOpacity={0.7}>
 							<View style={styles.browseListItem}>
 								{iconUp}
-								<Text style={styles.browseListItemText} onPress={this._seeMoviesList.bind(this, 'upcoming', 'Upcoming')}>Upcoming</Text>
+								<Text
+									style={styles.browseListItemText}
+									onPress={this._seeMoviesList.bind(this, 'upcoming', 'Upcoming')}>
+									Upcoming
+								</Text>
 							</View>
 						</TouchableOpacity>
 					</View>
