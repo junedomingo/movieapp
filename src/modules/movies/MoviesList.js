@@ -1,6 +1,5 @@
 import React, { PropTypes, Component } from 'react';
 import {
-	StyleSheet,
 	View,
 	ListView
 } from 'react-native';
@@ -9,6 +8,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as api from '../../constants/api';
 import * as moviesActions from './movies.actions';
+
+import styles from './styles/MoviesList';
 import CardMovie from './components/CardMovie';
 import ProgressBar from '../_global/ProgressBar';
 
@@ -77,25 +78,12 @@ class Popular extends Component {
 				onEndReachedThreshold={1200}
 				dataSource={this.state.dataSource}
 				renderRow={rowData => <CardMovie info={rowData} />}
-				renderSeparator={(sectionId, rowId) => <View key={rowId} style={{ marginTop: 10, backgroundColor: '#8E8E8E' }} />}
+				renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.seperator} />}
 				renderFooter={() => <View style={{ height: 50 }}><ProgressBar /></View>}
 			/>
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#0a0a0a'
-	},
-	progressBar: {
-		backgroundColor: '#0a0a0a',
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center'
-	}
-});
 
 Popular.propTypes = {
 	actions: PropTypes.object.isRequired,
