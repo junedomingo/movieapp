@@ -1,10 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import {
-	ActivityIndicator,
 	StyleSheet,
 	View,
-	ListView,
-	Text
+	ListView
 } from 'react-native';
 import axios from 'axios';
 import { connect } from 'react-redux';
@@ -70,15 +68,8 @@ class Popular extends Component {
 		}
 	}
 
-
 	render() {
-		const progressBar = (
-			<View style={styles.progressBar}>
-				<ActivityIndicator size="large" color="#EA0000" />
-			</View>
-		);
-
-		return (this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View>  :
+		return (this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
 			<ListView
 				style={styles.container}
 				enableEmptySections
@@ -96,15 +87,14 @@ class Popular extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#0a0a0a',
-		// padding: 16
+		backgroundColor: '#0a0a0a'
 	},
 	progressBar: {
 		backgroundColor: '#0a0a0a',
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center'
-	},
+	}
 });
 
 Popular.propTypes = {

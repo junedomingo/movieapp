@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux';
-import _ from 'lodash';
 
 const iconStar = (<Icon name="md-star" size={16} color="#F5B642" />);
 
@@ -17,8 +16,6 @@ class MovieCard extends Component {
 
 	constructor(props) {
 		super(props);
-
-		console.log(this.props.moviesGenres);
 	}
 	// getGenre(ids) {
 	// 	const genre_ids = this.props.moviesGenres;

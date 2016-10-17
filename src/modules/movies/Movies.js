@@ -116,7 +116,8 @@ class Movies extends Component {
 Movies.propTypes = {
 	actions: PropTypes.object.isRequired,
 	nowPlayingMovies: PropTypes.object.isRequired,
-	popularMovies: PropTypes.object.isRequired
+	popularMovies: PropTypes.object.isRequired,
+	navigator: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
