@@ -33,6 +33,12 @@ export default function (state = initialState.movies, action) {
 				...state,
 				genres: action.moviesGenres
 			};
+
+		case types.RETRIEVE_MOVIES_LIST_SUCCESS:
+			return {
+				...state,
+				list: action.list
+			};
 		default:
 			return state;
 	}

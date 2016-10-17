@@ -11,7 +11,9 @@ const styles = StyleSheet.create({
 	},
 	cardThumbImage: {
 		width: 135,
-		height: 184
+		height: 184,
+		borderTopLeftRadius: 2,
+		borderTopRightRadius: 2
 	},
 	cardThumbTitleContainer: {
 		flex: 1,

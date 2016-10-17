@@ -101,3 +101,23 @@ export function retrieveNowPlayingMovies(page) {
 		});
 	};
 }
+
+// MOVIES LIST
+export function retrieveMoviesListSuccess(res) {
+	return {
+		type: types.RETRIEVE_MOVIES_LIST_SUCCESS,
+		list: res.data
+	};
+}
+
+export function retrieveMoviesList(type, page) {
+	return function (dispatch) {
+		return axios.get(`${api.URL}/movie/${type}?api_key=${api.KEY}&page=${page}`)
+		.then(res => {
+			dispatch(retrieveMoviesListSuccess(res));
+		})
+		.catch(error => {
+			console.log('Movies List', error); //eslint-disable-line
+		});
+	};
+}

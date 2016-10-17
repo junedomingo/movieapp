@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
 		backgroundColor: 'black'
 	},
 	progressBar: {
-		backgroundColor: 'black',
+		backgroundColor: '#0a0a0a',
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center'
@@ -26,6 +26,22 @@ const styles = StyleSheet.create({
 	listHeadingRight: {
 		color: 'white',
 		fontSize: 16
+	},
+	browseList: {
+		marginTop: 30,
+		paddingHorizontal: 16,
+		marginBottom: 30
+	},
+	browseListItem: {
+		paddingVertical: 10,
+		flexDirection: 'row'
+	},
+	browseListItemText: {
+		flex: 1,
+		color: 'white',
+		paddingLeft: 10,
+		fontSize: 16,
+		fontWeight: '100'
 	}
 });
 
