@@ -11,12 +11,12 @@ const store = configureStore();
 registerScreens(store, Provider);
 
 const navigatorStyle = {
-	statusBarColor: '#CD0000',
+	statusBarColor: 'black',
+	statusBarTextColorScheme: 'light',
 	navigationBarColor: 'black',
-	navBarBackgroundColor: '#EA0000',
+	navBarBackgroundColor: '#0a0a0a',
 	navBarTextColor: 'white',
 	navBarButtonColor: 'white',
-	statusBarTextColorScheme: 'light',
 	tabBarButtonColor: 'red',
 	tabBarSelectedButtonColor: 'red',
 	tabBarBackgroundColor: 'white'
