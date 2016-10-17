@@ -38,7 +38,7 @@ class App {
 			},
 			drawer: {
 				left: {
-					screen: 'movieapp.SideMenu'
+					screen: 'movieapp.Drawer'
 				}
 			}
 		});
