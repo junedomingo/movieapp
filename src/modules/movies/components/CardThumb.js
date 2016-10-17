@@ -9,7 +9,7 @@ import {
 import styles from '../styles/CardThumb';
 
 const CardThumb = ({ info }) => (
-	<TouchableOpacity>
+	<TouchableOpacity activeOpacity={0.8}>
 		<View style={styles.cardThumbContainer}>
 			<Image source={{ uri: `https://image.tmdb.org/t/p/w185/${info.poster_path}` }} style={styles.cardThumbImage} />
 			<View style={styles.cardThumbTitleContainer}>
