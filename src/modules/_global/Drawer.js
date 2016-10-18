@@ -54,7 +54,7 @@ class Drawer extends Component {
 						</View>
 					</View>
 					<Text style={styles._version}>
-						{'v1.0.0'}
+						{/* 'v1.0.0' */}
 					</Text>
 				</View>
 			</LinearGradient>

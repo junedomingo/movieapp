@@ -35,7 +35,8 @@ const styles = StyleSheet.create({
 	_version: {
 		color: '#3c3c3c',
 		position: 'absolute',
-		bottom: 25
+		bottom: 25,
+		marginLeft: 53
 	}
 });
 
