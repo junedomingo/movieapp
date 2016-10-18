@@ -34,8 +34,8 @@ class Movies extends Component {
 		this.props.actions.retrievePopularMovies();
 	}
 
-	componentDidUpdate() {
-		if (this.state.isLoading !== false) {
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.nowPlayingMovies && nextProps.popularMovies) {
 			this.setState({ isLoading: false });
 		}
 	}
