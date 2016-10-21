@@ -121,3 +121,43 @@ export function retrieveMoviesList(type, page) {
 		});
 	};
 }
+
+// MOVIE DETAILS
+export function retrieveMovieDetailsSuccess(res) {
+	return {
+		type: types.RETRIEVE_MOVIE_DETAILS_SUCCESS,
+		details: res.data
+	};
+}
+
+export function retrieveMovieDetails(movieId) {
+	return function (dispatch) {
+		return axios.get(`${api.URL}/movie/${movieId}?api_key=${api.KEY}&append_to_response=casts,images`)
+		.then(res => {
+			dispatch(retrieveMovieDetailsSuccess(res));
+		})
+		.catch(error => {
+			console.log('Movie Details', error); //eslint-disable-line
+		});
+	};
+}
+
+// SIMILAR MOVIES
+export function retrieveSimilarMoviesSuccess(res) {
+	return {
+		type: types.RETRIEVE_SIMILAR_MOVIES_SUCCESS,
+		similarMovies: res.data
+	};
+}
+
+export function retrieveSimilarMovies(movieId, page) {
+	return function (dispatch) {
+		return axios.get(`${api.URL}/movie/${movieId}/similar?api_key=${api.KEY}&page=${page}`)
+		.then(res => {
+			dispatch(retrieveSimilarMoviesSuccess(res));
+		})
+		.catch(error => {
+			console.log('Similar Movies', error); //eslint-disable-line
+		});
+	};
+}

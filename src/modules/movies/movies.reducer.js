@@ -39,6 +39,18 @@ export default function (state = initialState.movies, action) {
 				...state,
 				list: action.list
 			};
+
+		case types.RETRIEVE_MOVIE_DETAILS_SUCCESS:
+			return {
+				...state,
+				details: action.details
+			};
+
+		case types.RETRIEVE_SIMILAR_MOVIES_SUCCESS:
+			return {
+				...state,
+				similarMovies: action.similarMovies
+			};
 		default:
 			return state;
 	}
