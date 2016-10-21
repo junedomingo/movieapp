@@ -13,9 +13,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import * as moviesActions from './movies.actions';
 
 import styles from './styles/Movies';
-import * as moviesActions from './movies.actions';
 import ProgressBar from '../_global/ProgressBar';
 import CardThumb from './components/CardThumb';
 import CardSwipe from './components/CardSwipe';
@@ -27,6 +27,8 @@ class Movies extends Component {
 		this.state = {
 			isLoading: true
 		};
+
+		this._viewMovie = this._viewMovie.bind(this);
 	}
 
 	componentWillMount() {
@@ -44,15 +46,17 @@ class Movies extends Component {
 		this.props.navigator.showModal({
 			title,
 			screen: 'movieapp.MoviesList',
-			navigatorStyle: {
-				statusBarColor: 'black',
-				statusBarTextColorScheme: 'light',
-				navBarBackgroundColor: '#0a0a0a',
-				navBarTextColor: 'white',
-				navBarButtonColor: 'white'
-			},
 			passProps: {
 				type
+			}
+		});
+	}
+
+	_viewMovie(movieId) {
+		this.props.navigator.showModal({
+			screen: 'movieapp.Movie',
+			passProps: {
+				movieId
 			}
 		});
 	}
@@ -71,7 +75,7 @@ class Movies extends Component {
 					showsPagination={false}
 					height={248}>
 					{nowPlayingMovies.results.map(info => (
-						<CardSwipe key={info.id} info={info} />
+						<CardSwipe key={info.id} info={info} viewMovie={this._viewMovie} />
 					))}
 				</Swiper>
 
@@ -88,7 +92,7 @@ class Movies extends Component {
 					</View>
 					<ScrollView horizontal showsHorizontalScrollIndicator={false}>
 						{popularMovies.results.map(info => (
-							<CardThumb key={info.id} info={info} />
+							<CardThumb key={info.id} info={info} viewMovie={this._viewMovie} />
 						))}
 					</ScrollView>
 					<View style={styles.browseList}>
