@@ -32,7 +32,7 @@ class Drawer extends Component {
 	}
 
 	render() {
-		const iconMovies = (<Icon name="md-film" size={26} color="#9F9F9F" style={styles.drawerListIcon} />);
+		const iconMovies = (<Icon name="md-film" size={26} color="#9F9F9F" style={[styles.drawerListIcon, { paddingLeft: 3 }]} />);
 		const iconTV = (<Icon name="ios-desktop" size={26} color="#9F9F9F" style={styles.drawerListIcon} />);
 		return (
 			<LinearGradient colors={['rgba(0, 0, 0, 0.7)', 'rgba(0,0,0, 0.9)', 'rgba(0,0,0, 1)']} style={styles.linearGradient}>
