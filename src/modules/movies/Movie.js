@@ -3,7 +3,6 @@ import {
 	Image,
 	RefreshControl,
 	ScrollView,
-	StyleSheet,
 	Text,
 	View
 } from 'react-native';
