@@ -1,3 +1,7 @@
+/*
+* https://github.com/skv-headless/react-native-scrollable-tab-view/blob/master/DefaultTabBar.js
+ */
+
 const React = require('react');
 const ReactNative = require('react-native');
 const {
@@ -89,14 +93,14 @@ const styles = StyleSheet.create({
     paddingBottom: 10
   },
   tabs: {
-    height: 45,
+    height: 50,
     flexDirection: 'row',
     justifyContent: 'space-around',
     borderWidth: 1,
     borderTopWidth: 0,
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    borderColor: '#2B2B2B',
+    borderColor: '#141414',
   },
 });
 
