@@ -24,6 +24,8 @@ class Popular extends Component {
 				results: []
 			}
 		};
+
+		this._viewMovie = this._viewMovie.bind(this);
 	}
 
 	componentWillMount() {
@@ -39,7 +41,7 @@ class Popular extends Component {
 		});
 	}
 
-	retrieveNextPage(type) {
+	_retrieveNextPage(type) {
 		if (this.state.currentPage !== this.props.list.total_page) {
 			this.setState({
 				currentPage: this.state.currentPage + 1
@@ -69,15 +71,24 @@ class Popular extends Component {
 		}
 	}
 
+	_viewMovie(movieId) {
+		this.props.navigator.showModal({
+			screen: 'movieapp.Movie',
+			passProps: {
+				movieId
+			}
+		});
+	}
+
 	render() {
 		return (this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
 			<ListView
 				style={styles.container}
 				enableEmptySections
-				onEndReached={type => this.retrieveNextPage(this.props.type)}
+				onEndReached={type => this._retrieveNextPage(this.props.type)}
 				onEndReachedThreshold={1200}
 				dataSource={this.state.dataSource}
-				renderRow={rowData => <CardMovie info={rowData} />}
+				renderRow={rowData => <CardMovie info={rowData} viewMovie={this._viewMovie} />}
 				renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.seperator} />}
 				renderFooter={() => <View style={{ height: 50 }}><ProgressBar /></View>}
 			/>
@@ -88,7 +99,16 @@ class Popular extends Component {
 Popular.propTypes = {
 	actions: PropTypes.object.isRequired,
 	list: PropTypes.object.isRequired,
-	type: PropTypes.string.isRequired
+	type: PropTypes.string.isRequired,
+	navigator: PropTypes.object
+};
+
+Popular.navigatorStyle = {
+	statusBarColor: 'black',
+	statusBarTextColorScheme: 'light',
+	navBarBackgroundColor: '#0a0a0a',
+	navBarTextColor: 'white',
+	navBarButtonColor: 'white'
 };
 
 function mapStateToProps(state, ownProps) {
