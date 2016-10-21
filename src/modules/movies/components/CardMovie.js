@@ -9,6 +9,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux';
 
+import { IMG_URL } from '../../../constants/api';
 import styles from '../styles/CardMovie';
 
 const iconStar = (<Icon name="md-star" size={16} color="#F5B642" />);
@@ -26,12 +27,12 @@ class CardMovie extends Component {
 	// }
 
 	render() {
-		const { info } = this.props;
+		const { info, viewMovie } = this.props;
 		return (
 			<View style={styles.cardContainer}>
-				<TouchableOpacity activeOpacity={0.9}>
+				<TouchableOpacity activeOpacity={0.9} onPress={viewMovie.bind(this, info.id)}>
 					<View style={styles.card}>
-						<Image source={{ uri: `https://image.tmdb.org/t/p/w185/${info.poster_path}` }} style={styles.cardImage} />
+						<Image source={{ uri: `${IMG_URL}/w185/${info.poster_path}` }} style={styles.cardImage} />
 						<View style={styles.cardDetails}>
 							<Text
 								style={styles.cardTitle}
@@ -39,9 +40,7 @@ class CardMovie extends Component {
 								{info.original_title}
 							</Text>
 							<View style={styles.cardGenre}>
-								{
-									info.genre_ids.map(item => <Text key={item} style={styles.cardGenreItem}>{item}</Text>)
-								}
+								<Text style={styles.cardGenreItem}>{info.release_date.substring(0, 4)}</Text>
 							</View>
 							<View style={styles.cardNumbers}>
 								<View style={styles.cardStar}>
@@ -62,7 +61,8 @@ class CardMovie extends Component {
 }
 
 CardMovie.propTypes = {
-	info: PropTypes.object.isRequired
+	info: PropTypes.object.isRequired,
+	viewMovie: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
