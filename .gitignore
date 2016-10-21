@@ -42,3 +42,4 @@ android/keystores/debug.keystore
 
 # Dev
 .env
+android/app/my-release-key.keystore
