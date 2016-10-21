@@ -6,12 +6,13 @@ import {
 	View
 } from 'react-native';
 
+import { IMG_URL } from '../../../constants/api';
 import styles from '../styles/CardThumb';
 
-const CardThumb = ({ info }) => (
-	<TouchableOpacity activeOpacity={0.8}>
+const CardThumb = ({ info, viewMovie }) => (
+	<TouchableOpacity activeOpacity={0.8} onPress={viewMovie.bind(this, info.id)}>
 		<View style={styles.cardThumbContainer}>
-			<Image source={{ uri: `https://image.tmdb.org/t/p/w185/${info.poster_path}` }} style={styles.cardThumbImage} />
+			<Image source={{ uri: `${IMG_URL}/w185/${info.poster_path}` }} style={styles.cardThumbImage} />
 			<View style={styles.cardThumbTitleContainer}>
 				<Text style={styles.cardThumbTitle} numberOfLines={2}>
 					{info.original_title}
@@ -22,7 +23,8 @@ const CardThumb = ({ info }) => (
 );
 
 CardThumb.propTypes = {
-	info: PropTypes.object.isRequired
+	info: PropTypes.object.isRequired,
+	viewMovie: PropTypes.func.isRequired
 };
 
 export default CardThumb;
