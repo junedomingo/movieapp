@@ -18,6 +18,8 @@
     "eslint-plugin-react-native": "^2.0.0",
     "eslint-watch": "^2.1.14",
     "lodash": "^4.16.4",
+    "moment": "^2.15.1",
+    "numeral": "^1.5.3",
     "react": "15.3.2",
     "react-native": "0.32.0",
     "react-native-linear-gradient": "^1.5.13",
