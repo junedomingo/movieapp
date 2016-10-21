@@ -8,16 +8,17 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
 
+import { IMG_URL } from '../../../constants/api';
 import styles from '../styles/CardSwipe';
 
 const iconStar = (<Icon name="md-star" size={16} color="#F5B642" />);
 
-const CardSwipe = ({ info }) => (
+const CardSwipe = ({ info, viewMovie }) => (
 	<View>
-		<Image source={{ uri: `https://image.tmdb.org/t/p/w780/${(info.backdrop_path || info.poster_path)}` }} style={styles.imageBackdrop} />
+		<Image source={{ uri: `${IMG_URL}/w780/${(info.backdrop_path || info.poster_path)}` }} style={styles.imageBackdrop} />
 		<LinearGradient colors={['rgba(0, 0, 0, 0.5)', 'rgba(0,0,0, 0.7)', 'rgba(0,0,0, 0.8)']} style={styles.linearGradient} />
 		<View style={styles.cardContainer}>
-			<Image source={{ uri: `https://image.tmdb.org/t/p/w185/${info.poster_path}` }} style={styles.cardImage} />
+			<Image source={{ uri: `${IMG_URL}/w185/${info.poster_path}` }} style={styles.cardImage} />
 			<View style={styles.cardDetails}>
 				<Text style={styles.cardTitle} numberOfLines={2}>
 					{info.original_title}
@@ -35,7 +36,7 @@ const CardSwipe = ({ info }) => (
 				<Text style={styles.cardDescription} numberOfLines={3}>
 					{info.overview}
 				</Text>
-				<TouchableNativeFeedback background={TouchableNativeFeedback.SelectableBackground()}>
+				<TouchableNativeFeedback background={TouchableNativeFeedback.SelectableBackground()} onPress={viewMovie.bind(this, info.id)}>
 					<View style={styles.viewButton}>
 						<Text style={styles.viewButtonText}>View Details</Text>
 					</View>
