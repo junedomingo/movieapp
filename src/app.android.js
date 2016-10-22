@@ -2,7 +2,6 @@ import React from 'react'; // eslint-disable-line
 import { Provider } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 
-import { iconsLoaded } from './utils/AppIcons';
 import { registerScreens } from './screens';
 import configureStore from './store/configureStore';
 
@@ -22,27 +21,15 @@ const navigatorStyle = {
 	tabBarBackgroundColor: 'white'
 };
 
-class App {
-	constructor() {
-		iconsLoaded.then(() => {
-			this.startApp();
-		});
+Navigation.startSingleScreenApp({
+	screen: {
+		screen: 'movieapp.Movies',
+		title: 'Movies',
+		navigatorStyle
+	},
+	drawer: {
+		left: {
+			screen: 'movieapp.Drawer'
+		}
 	}
-
-	startApp() {
-		Navigation.startSingleScreenApp({
-			screen: {
-				screen: 'movieapp.Movies',
-				title: 'Movies',
-				navigatorStyle
-			},
-			drawer: {
-				left: {
-					screen: 'movieapp.Drawer'
-				}
-			}
-		});
-	}
-}
-
-export default App;
+});
