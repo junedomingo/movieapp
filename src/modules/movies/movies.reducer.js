@@ -10,18 +10,6 @@ export default function (state = initialState.movies, action) {
 				popularMovies: action.popularMovies
 			};
 
-		case types.RETRIEVE_TOPRATED_MOVIES_SUCCESS:
-			return {
-				...state,
-				topRatedMovies: action.topRatedMovies
-			};
-
-		case types.RETRIEVE_UPCOMING_MOVIES_SUCCESS:
-			return {
-				...state,
-				upcomingMovies: action.upcomingMovies
-			};
-
 		case types.RETRIEVE_NOWPLAYING_MOVIES_SUCCESS:
 			return {
 				...state,
@@ -46,11 +34,11 @@ export default function (state = initialState.movies, action) {
 				details: action.details
 			};
 
-		case types.RETRIEVE_SIMILAR_MOVIES_SUCCESS:
-			return {
-				...state,
-				similarMovies: action.similarMovies
-			};
+		// case types.RETRIEVE_SIMILAR_MOVIES_SUCCESS:
+		// 	return {
+		// 		...state,
+		// 		similarMovies: action.similarMovies
+		// 	};
 
 		case types.RETRIEVE_MOVIES_SEARCH_RESULT_SUCCESS:
 			return {
