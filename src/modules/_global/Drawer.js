@@ -67,7 +67,7 @@ class Drawer extends Component {
 						</TouchableOpacity>
 						<View style={styles.drawerListItem}>
 							{iconTV}
-							<Text style={styles.drawerListItemText} onPress={() => ToastAndroid.show('Not Available Yet', ToastAndroid.SHORT)}>
+							<Text style={styles.drawerListItemText} onPress={() => ToastAndroid.show('Coming Soon!', ToastAndroid.SHORT)}>
 								TV Shows
 							</Text>
 						</View>
