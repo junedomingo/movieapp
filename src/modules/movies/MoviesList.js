@@ -13,7 +13,7 @@ import styles from './styles/MoviesList';
 import CardMovie from './components/CardMovie';
 import ProgressBar from '../_global/ProgressBar';
 
-class Popular extends Component {
+class MoviesList extends Component {
 	constructor(props) {
 		super(props);
 
@@ -96,14 +96,14 @@ class Popular extends Component {
 	}
 }
 
-Popular.propTypes = {
+MoviesList.propTypes = {
 	actions: PropTypes.object.isRequired,
 	list: PropTypes.object.isRequired,
 	type: PropTypes.string.isRequired,
 	navigator: PropTypes.object
 };
 
-Popular.navigatorStyle = {
+MoviesList.navigatorStyle = {
 	statusBarColor: 'black',
 	statusBarTextColorScheme: 'light',
 	navBarBackgroundColor: '#0a0a0a',
@@ -123,4 +123,4 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Popular);
+export default connect(mapStateToProps, mapDispatchToProps)(MoviesList);
