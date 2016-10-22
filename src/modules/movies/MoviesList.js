@@ -37,15 +37,15 @@ class MoviesList extends Component {
 
 	_retrieveMoviesList(isRefreshed) {
 		this.props.actions.retrieveMoviesList(this.props.type, this.state.currentPage)
-		.then(() => {
-			const ds = new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 });
-			const dataSource = ds.cloneWithRows(this.props.list.results);
-			this.setState({
-				list: this.props.list,
-				dataSource,
-				isLoading: false
+			.then(() => {
+				const ds = new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 });
+				const dataSource = ds.cloneWithRows(this.props.list.results);
+				this.setState({
+					list: this.props.list,
+					dataSource,
+					isLoading: false
+				});
 			});
-		});
 		if (isRefreshed && this.setState({ isRefreshing: false }));
 	}
 
