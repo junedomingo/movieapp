@@ -50,7 +50,7 @@ class MoviesList extends Component {
 	}
 
 	_retrieveNextPage(type) {
-		if (this.state.currentPage !== this.props.list.total_page) {
+		if (this.state.currentPage !== this.props.list.total_pages) {
 			this.setState({
 				currentPage: this.state.currentPage + 1
 			});
