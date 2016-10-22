@@ -48,7 +48,7 @@ class Movie extends Component {
 
 	componentWillMount() {
 		this._retrieveDetails();
-		this._retrieveSimilarMovies();
+		// this._retrieveSimilarMovies();
 	}
 
 	componentWillReceiveProps(nextProps) {
