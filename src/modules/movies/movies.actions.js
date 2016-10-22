@@ -122,6 +122,26 @@ export function retrieveMoviesList(type, page) {
 	};
 }
 
+// SEARCH RESULTS
+export function retrieveMoviesSearchResultsSuccess(res) {
+	return {
+		type: types.RETRIEVE_MOVIES_SEARCH_RESULT_SUCCESS,
+		searchResults: res.data
+	};
+}
+
+export function retrieveMoviesSearchResults(query, page) {
+	return function (dispatch) {
+		return axios.get(`${api.URL}/search/movie/?api_key=${api.KEY}&query=${query}&page=${page}`)
+		.then(res => {
+			dispatch(retrieveMoviesSearchResultsSuccess(res));
+		})
+		.catch(error => {
+			console.log('Movies Search Results', error); //eslint-disable-line
+		});
+	};
+}
+
 // MOVIE DETAILS
 export function retrieveMovieDetailsSuccess(res) {
 	return {

@@ -51,6 +51,12 @@ export default function (state = initialState.movies, action) {
 				...state,
 				similarMovies: action.similarMovies
 			};
+
+		case types.RETRIEVE_MOVIES_SEARCH_RESULT_SUCCESS:
+			return {
+				...state,
+				searchResults: action.searchResults
+			};
 		default:
 			return state;
 	}
