@@ -2,8 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import {
 	View,
 	ListView,
-	TextInput,
-	StyleSheet
+	TextInput
 } from 'react-native';
 import axios from 'axios';
 import { connect } from 'react-redux';
@@ -11,7 +10,7 @@ import { bindActionCreators } from 'redux';
 import * as api from '../../constants/api';
 import * as moviesActions from './movies.actions';
 
-import styles from './styles/MoviesList';
+import styles from './styles/Search';
 import CardMovie from './components/CardMovie';
 
 class Search extends Component {
@@ -114,15 +113,17 @@ class Search extends Component {
 
 	render() {
 		return (
-			<View style={styles2.container}>
-				<View style={styles2.searchbox}>
-					<TextInput
-						style={styles2.textInput}
-						autoFocus
-						returnKeyType={'search'}
-						value={this.state.query}
-						onChange={this._handleTextInput}
-					/>
+			<View style={styles.container}>
+				<View style={styles.searchbox}>
+					<View style={styles.searchboxBorder}>
+						<TextInput
+							style={styles.textInput}
+							autoFocus
+							returnKeyType={'search'}
+							value={this.state.query}
+							onChange={this._handleTextInput}
+						/>
+					</View>
 				</View>
 				{ !this.state.isLoading && this._renderListView() }
 			</View>
@@ -130,25 +131,6 @@ class Search extends Component {
 		);
 	}
 }
-
-const styles2 = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#0a0a0a'
-	},
-	textInput: {
-		backgroundColor: 'white',
-		height: 48
-	},
-	searchbox: {
-		borderRadius: 3,
-		backgroundColor: 'white',
-		height: 48,
-		paddingHorizontal: 8,
-		marginHorizontal: 16,
-		marginBottom: 16
-	}
-});
 
 Search.propTypes = {
 	actions: PropTypes.object.isRequired,
