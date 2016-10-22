@@ -1,7 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import {
 	View,
-	ListView
+	ListView,
+	RefreshControl
 } from 'react-native';
 import axios from 'axios';
 import { connect } from 'react-redux';
@@ -19,6 +20,7 @@ class MoviesList extends Component {
 
 		this.state = {
 			isLoading: true,
+			isRefreshing: false,
 			currentPage: 1,
 			list: {
 				results: []
@@ -26,9 +28,14 @@ class MoviesList extends Component {
 		};
 
 		this._viewMovie = this._viewMovie.bind(this);
+		this._onRefresh = this._onRefresh.bind(this);
 	}
 
 	componentWillMount() {
+		this._retrieveMoviesList();
+	}
+
+	_retrieveMoviesList(isRefreshed) {
 		this.props.actions.retrieveMoviesList(this.props.type, this.state.currentPage)
 		.then(() => {
 			const ds = new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 });
@@ -39,6 +46,7 @@ class MoviesList extends Component {
 				isLoading: false
 			});
 		});
+		if (isRefreshed && this.setState({ isRefreshing: false }));
 	}
 
 	_retrieveNextPage(type) {
@@ -80,6 +88,11 @@ class MoviesList extends Component {
 		});
 	}
 
+	_onRefresh() {
+		this.setState({ isRefreshing: true });
+		this._retrieveMoviesList('isRefreshed');
+	}
+
 	render() {
 		return (this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
 			<ListView
@@ -91,6 +104,14 @@ class MoviesList extends Component {
 				renderRow={rowData => <CardMovie info={rowData} viewMovie={this._viewMovie} />}
 				renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.seperator} />}
 				renderFooter={() => <View style={{ height: 50 }}><ProgressBar /></View>}
+				refreshControl={
+					<RefreshControl
+						refreshing={this.state.isRefreshing}
+						onRefresh={this._onRefresh}
+						colors={['#EA0000']}
+						progressBackgroundColor="white"
+					/>
+				}
 			/>
 		);
 	}
