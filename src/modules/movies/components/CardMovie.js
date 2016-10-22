@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux';
 
 import { IMG_URL } from '../../../constants/api';
-import styles from '../styles/CardMovie';
+import styles from './styles/CardMovie';
 
 const iconStar = (<Icon name="md-star" size={16} color="#F5B642" />);
 

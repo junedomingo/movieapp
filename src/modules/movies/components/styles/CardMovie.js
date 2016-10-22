@@ -19,7 +19,9 @@ const styles = StyleSheet.create({
 	},
 	cardImage: {
 		height: 163,
-		width: 120
+		width: 120,
+		borderTopLeftRadius: 3,
+		borderBottomLeftRadius: 3
 	},
 	cardTitle: {
 		color: 'black',

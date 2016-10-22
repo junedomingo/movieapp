@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import { IMG_URL } from '../../../constants/api';
-import styles from '../styles/CardThumb';
+import styles from './styles/CardThumb';
 
 const CardThumb = ({ info, viewMovie }) => (
 	<TouchableOpacity activeOpacity={0.8} onPress={viewMovie.bind(this, info.id)}>

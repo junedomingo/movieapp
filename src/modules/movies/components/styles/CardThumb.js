@@ -7,13 +7,13 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white',
 		flexDirection: 'column',
 		marginRight: 10,
-		borderRadius: 2
+		borderRadius: 3
 	},
 	cardThumbImage: {
 		width: 135,
 		height: 184,
-		borderTopLeftRadius: 2,
-		borderTopRightRadius: 2
+		borderTopLeftRadius: 3,
+		borderTopRightRadius: 3
 	},
 	cardThumbTitleContainer: {
 		flex: 1,

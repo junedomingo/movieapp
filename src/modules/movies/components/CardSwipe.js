@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { IMG_URL } from '../../../constants/api';
-import styles from '../styles/CardSwipe';
+import styles from './styles/CardSwipe';
 
 const iconStar = (<Icon name="md-star" size={16} color="#F5B642" />);
 
@@ -47,7 +47,8 @@ const CardSwipe = ({ info, viewMovie }) => (
 );
 
 CardSwipe.propTypes = {
-	info: PropTypes.object.isRequired
+	info: PropTypes.object.isRequired,
+	viewMovie: PropTypes.func.isRequired
 };
 
 export default CardSwipe;
