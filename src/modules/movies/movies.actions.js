@@ -123,21 +123,21 @@ export function retrieveMovieDetails(movieId) {
 }
 
 // SIMILAR MOVIES
-export function retrieveSimilarMoviesSuccess(res) {
-	return {
-		type: types.RETRIEVE_SIMILAR_MOVIES_SUCCESS,
-		similarMovies: res.data
-	};
-}
-
-export function retrieveSimilarMovies(movieId, page) {
-	return function (dispatch) {
-		return axios.get(`${api.URL}/movie/${movieId}/similar?api_key=${api.KEY}&page=${page}`)
-		.then(res => {
-			dispatch(retrieveSimilarMoviesSuccess(res));
-		})
-		.catch(error => {
-			console.log('Similar Movies', error); //eslint-disable-line
-		});
-	};
-}
+// export function retrieveSimilarMoviesSuccess(res) {
+// 	return {
+// 		type: types.RETRIEVE_SIMILAR_MOVIES_SUCCESS,
+// 		similarMovies: res.data
+// 	};
+// }
+//
+// export function retrieveSimilarMovies(movieId, page) {
+// 	return function (dispatch) {
+// 		return axios.get(`${api.URL}/movie/${movieId}/similar?api_key=${api.KEY}&page=${page}`)
+// 		.then(res => {
+// 			dispatch(retrieveSimilarMoviesSuccess(res));
+// 		})
+// 		.catch(error => {
+// 			console.log('Similar Movies', error); //eslint-disable-line
+// 		});
+// 	};
+// }
