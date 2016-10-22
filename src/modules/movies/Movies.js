@@ -1,13 +1,11 @@
 /* eslint-disable react/no-did-update-set-state */
-import React, {
-	PropTypes,
-	Component
-} from 'react';
+import React, { PropTypes, Component } from 'react';
 import {
+	RefreshControl,
 	ScrollView,
-	View,
 	Text,
-	TouchableOpacity
+	TouchableOpacity,
+	View
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Swiper from 'react-native-swiper';
@@ -25,21 +23,28 @@ class Movies extends Component {
 		super(props);
 
 		this.state = {
-			isLoading: true
+			isLoading: true,
+			isRefreshing: false,
 		};
 
 		this._viewMovie = this._viewMovie.bind(this);
+		this._onRefresh = this._onRefresh.bind(this);
 	}
 
 	componentWillMount() {
-		this.props.actions.retrieveNowPlayingMovies();
-		this.props.actions.retrievePopularMovies();
+		this._retrieveMovies();
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.nowPlayingMovies && nextProps.popularMovies) {
 			this.setState({ isLoading: false });
 		}
+	}
+
+	_retrieveMovies(isRefreshed) {
+		this.props.actions.retrieveNowPlayingMovies();
+		this.props.actions.retrievePopularMovies();
+		if (isRefreshed && this.setState({ isRefreshing: false }));
 	}
 
 	_seeMoviesList(type, title) {
@@ -61,6 +66,11 @@ class Movies extends Component {
 		});
 	}
 
+	_onRefresh() {
+		this.setState({ isRefreshing: true });
+		this._retrieveMovies('isRefreshed');
+	}
+
 	render() {
 		const { nowPlayingMovies, popularMovies } = this.props;
 		const iconPlay = (<Icon name="md-play" size={21} color="#9F9F9F" style={{ paddingLeft: 3, width: 22 }} />);
@@ -68,7 +78,16 @@ class Movies extends Component {
 		const iconUp = (<Icon name="md-recording" size={21} color="#9F9F9F" style={{ width: 22 }} />);
 
 		return (this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
-			<ScrollView style={styles.container}>
+			<ScrollView
+				style={styles.container}
+				refreshControl={
+					<RefreshControl
+						refreshing={this.state.isRefreshing}
+						onRefresh={this._onRefresh}
+						colors={['#EA0000']}
+						progressBackgroundColor="white"
+					/>
+				}>
 				<Swiper
 					autoplay
 					autoplayTimeout={4}
