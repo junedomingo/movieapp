@@ -1,4 +1,3 @@
-/* eslint-disable react/no-did-update-set-state */
 import React, { PropTypes, Component } from 'react';
 import {
 	RefreshControl,
@@ -24,7 +23,7 @@ class Movies extends Component {
 
 		this.state = {
 			isLoading: true,
-			isRefreshing: false,
+			isRefreshing: false
 		};
 
 		this._viewMovie = this._viewMovie.bind(this);
@@ -47,7 +46,7 @@ class Movies extends Component {
 		if (isRefreshed && this.setState({ isRefreshing: false }));
 	}
 
-	_seeMoviesList(type, title) {
+	_viewMoviesList(type, title) {
 		this.props.navigator.showModal({
 			title,
 			screen: 'movieapp.MoviesList',
@@ -73,9 +72,9 @@ class Movies extends Component {
 
 	render() {
 		const { nowPlayingMovies, popularMovies } = this.props;
-		const iconPlay = (<Icon name="md-play" size={21} color="#9F9F9F" style={{ paddingLeft: 3, width: 22 }} />);
-		const iconTop = (<Icon name="md-trending-up" size={21} color="#9F9F9F" style={{ width: 22 }} />);
-		const iconUp = (<Icon name="md-recording" size={21} color="#9F9F9F" style={{ width: 22 }} />);
+		const iconPlay = <Icon name="md-play" size={21} color="#9F9F9F" style={{ paddingLeft: 3, width: 22 }} />;
+		const iconTop = <Icon name="md-trending-up" size={21} color="#9F9F9F" style={{ width: 22 }} />;
+		const iconUp = <Icon name="md-recording" size={21} color="#9F9F9F" style={{ width: 22 }} />;
 
 		return (this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
 			<ScrollView
@@ -97,14 +96,13 @@ class Movies extends Component {
 						<CardSwipe key={info.id} info={info} viewMovie={this._viewMovie} />
 					))}
 				</Swiper>
-
 				<View>
 					<View style={styles.listHeading}>
 						<Text style={styles.listHeadingLeft}>Popular</Text>
 						<TouchableOpacity>
 							<Text
 								style={styles.listHeadingRight}
-								onPress={this._seeMoviesList.bind(this, 'popular', 'Popular')}>
+								onPress={this._viewMoviesList.bind(this, 'popular', 'Popular')}>
 								See all
 							</Text>
 						</TouchableOpacity>
@@ -120,7 +118,7 @@ class Movies extends Component {
 								{iconPlay}
 								<Text
 									style={styles.browseListItemText}
-									onPress={this._seeMoviesList.bind(this, 'now_playing', 'Now Playing')}>
+									onPress={this._viewMoviesList.bind(this, 'now_playing', 'Now Playing')}>
 									Now Playing
 								</Text>
 							</View>
@@ -128,7 +126,7 @@ class Movies extends Component {
 						<TouchableOpacity activeOpacity={0.7}>
 							<View style={styles.browseListItem}>
 								{iconTop}
-								<Text style={styles.browseListItemText} onPress={this._seeMoviesList.bind(this, 'top_rated', 'Top Rated')}>
+								<Text style={styles.browseListItemText} onPress={this._viewMoviesList.bind(this, 'top_rated', 'Top Rated')}>
 									Top Rated
 								</Text>
 							</View>
@@ -138,7 +136,7 @@ class Movies extends Component {
 								{iconUp}
 								<Text
 									style={styles.browseListItemText}
-									onPress={this._seeMoviesList.bind(this, 'upcoming', 'Upcoming')}>
+									onPress={this._viewMoviesList.bind(this, 'upcoming', 'Upcoming')}>
 									Upcoming
 								</Text>
 							</View>
