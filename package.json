@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "lint": "node_modules/.bin/esw index.ios.js index.android.js src utils",
+    "lint": "esw index.ios.js index.android.js src utils",
     "lint:watch": "npm run lint -- --watch",
     "test": "jest"
   },
@@ -44,5 +44,13 @@
     "reactotron-react-native": "^1.1.4",
     "redux-immutable-state-invariant": "^1.2.4",
     "redux-logger": "^2.7.0"
-  }
+  },
+  "description": "Discover movies and tv shows",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/JuneDomingo/movieapp.git"
+  },
+  "author": "June Domingo <june@cynder.io>",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/JuneDomingo/movieapp#readme"
 }
