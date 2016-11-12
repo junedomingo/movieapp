@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#131313'
 	},
 	contentContainer: {
+		flex: 1,
 		marginTop: 157
 	},
 	progressBar: {
