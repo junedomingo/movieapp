@@ -1,6 +1,7 @@
-import * as types from '../../constants/actionTypes';
-import * as api from '../../constants/api';
 import axios from 'axios';
+import * as types from '../../constants/actionTypes';
+import { TMDB_URL, TMDB_API_KEY } from '../../constants/api';
+
 
 // GENRES
 export function retrieveMoviesGenresSuccess(res) {
@@ -12,7 +13,7 @@ export function retrieveMoviesGenresSuccess(res) {
 
 export function retrieveMoviesGenres() {
 	return function (dispatch) {
-		return axios.get(`${api.URL}/genre/movie/list?api_key=${api.KEY}`)
+		return axios.get(`${TMDB_URL}/genre/movie/list?api_key=${TMDB_API_KEY}`)
 		.then(res => {
 			dispatch(retrieveMoviesGenresSuccess(res));
 		})
@@ -32,7 +33,7 @@ export function retrievePopularMoviesSuccess(res) {
 
 export function retrievePopularMovies(page) {
 	return function (dispatch) {
-		return axios.get(`${api.URL}/movie/popular?api_key=${api.KEY}&page=${page}`)
+		return axios.get(`${TMDB_URL}/movie/popular?api_key=${TMDB_API_KEY}&page=${page}`)
 		.then(res => {
 			dispatch(retrievePopularMoviesSuccess(res));
 		})
@@ -52,7 +53,7 @@ export function retrieveNowPlayingMoviesSuccess(res) {
 
 export function retrieveNowPlayingMovies(page) {
 	return function (dispatch) {
-		return axios.get(`${api.URL}/movie/now_playing?api_key=${api.KEY}&page=${page}`)
+		return axios.get(`${TMDB_URL}/movie/now_playing?api_key=${TMDB_API_KEY}&page=${page}`)
 		.then(res => {
 			dispatch(retrieveNowPlayingMoviesSuccess(res));
 		})
@@ -72,7 +73,7 @@ export function retrieveMoviesListSuccess(res) {
 
 export function retrieveMoviesList(type, page) {
 	return function (dispatch) {
-		return axios.get(`${api.URL}/movie/${type}?api_key=${api.KEY}&page=${page}`)
+		return axios.get(`${TMDB_URL}/movie/${type}?api_key=${TMDB_API_KEY}&page=${page}`)
 		.then(res => {
 			dispatch(retrieveMoviesListSuccess(res));
 		})
@@ -92,7 +93,7 @@ export function retrieveMoviesSearchResultsSuccess(res) {
 
 export function retrieveMoviesSearchResults(query, page) {
 	return function (dispatch) {
-		return axios.get(`${api.URL}/search/movie/?api_key=${api.KEY}&query=${query}&page=${page}`)
+		return axios.get(`${TMDB_URL}/search/movie/?api_key=${TMDB_API_KEY}&query=${query}&page=${page}`)
 		.then(res => {
 			dispatch(retrieveMoviesSearchResultsSuccess(res));
 		})
@@ -112,7 +113,7 @@ export function retrieveMovieDetailsSuccess(res) {
 
 export function retrieveMovieDetails(movieId) {
 	return function (dispatch) {
-		return axios.get(`${api.URL}/movie/${movieId}?api_key=${api.KEY}&append_to_response=casts,images,videos`)
+		return axios.get(`${TMDB_URL}/movie/${movieId}?api_key=${TMDB_API_KEY}&append_to_response=casts,images,videos`)
 		.then(res => {
 			dispatch(retrieveMovieDetailsSuccess(res));
 		})
@@ -132,7 +133,7 @@ export function retrieveMovieDetails(movieId) {
 //
 // export function retrieveSimilarMovies(movieId, page) {
 // 	return function (dispatch) {
-// 		return axios.get(`${api.URL}/movie/${movieId}/similar?api_key=${api.KEY}&page=${page}`)
+// 		return axios.get(`${TMDB_URL}/movie/${movieId}/similar?api_key=${TMDB_API_KEY}&page=${page}`)
 // 		.then(res => {
 // 			dispatch(retrieveSimilarMoviesSuccess(res));
 // 		})

@@ -5,7 +5,7 @@ import {
 	Image
 } from 'react-native';
 
-import { IMG_URL } from '../../../constants/api';
+import { TMDB_IMG_URL } from '../../../constants/api';
 import styles from './styles/Casts';
 
 const Casts = ({ info, getTabHeight }) => {
@@ -16,7 +16,7 @@ const Casts = ({ info, getTabHeight }) => {
 			{
 				info.casts.cast.map(item => (
 					<View key={item.id} style={styles.castContainer}>
-						<Image source={{ uri: `${IMG_URL}/w185/${item.profile_path}` }} style={styles.castImage} />
+						<Image source={{ uri: `${TMDB_IMG_URL}/w185/${item.profile_path}` }} style={styles.castImage} />
 						<View style={styles.characterContainer}>
 							<Text style={styles.characterName}>
 								{item.name}

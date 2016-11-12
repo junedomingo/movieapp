@@ -8,17 +8,17 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
 
-import { IMG_URL } from '../../../constants/api';
+import { TMDB_IMG_URL } from '../../../constants/api';
 import styles from './styles/CardSwipe';
 
 const iconStar = (<Icon name="md-star" size={16} color="#F5B642" />);
 
 const CardSwipe = ({ info, viewMovie }) => (
 	<View>
-		<Image source={{ uri: `${IMG_URL}/w780/${(info.backdrop_path || info.poster_path)}` }} style={styles.imageBackdrop} />
+		<Image source={{ uri: `${TMDB_IMG_URL}/w780/${(info.backdrop_path || info.poster_path)}` }} style={styles.imageBackdrop} />
 		<LinearGradient colors={['rgba(0, 0, 0, 0.5)', 'rgba(0,0,0, 0.7)', 'rgba(0,0,0, 0.8)']} style={styles.linearGradient} />
 		<View style={styles.cardContainer}>
-			<Image source={{ uri: `${IMG_URL}/w185/${info.poster_path}` }} style={styles.cardImage} />
+			<Image source={{ uri: `${TMDB_IMG_URL}/w185/${info.poster_path}` }} style={styles.cardImage} />
 			<View style={styles.cardDetails}>
 				<Text style={styles.cardTitle} numberOfLines={2}>
 					{info.original_title}
