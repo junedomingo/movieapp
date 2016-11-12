@@ -6,6 +6,5 @@ export default {
 		searchResults: {},
 		nowPlayingMovies: {},
 		popularMovies: {}
-		// similarMovies: {}
 	}
 };

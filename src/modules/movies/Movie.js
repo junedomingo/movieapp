@@ -24,7 +24,6 @@ import DefaultTabBar from '../_global/scrollableTabView/DefaultTabBar';
 import Info from './tabs/Info';
 import ProgressBar from '../_global/ProgressBar';
 import styles from './styles/Movie';
-// import Similar from './tabs/Similar';
 
 class Movie extends Component {
 	constructor(props) {
@@ -38,7 +37,6 @@ class Movie extends Component {
 			isRefreshing: false,
 			showSimilarMovies: true,
 			trailersTabHeight: null,
-			// similarToTabHeight: null,
 			tab: 0,
 			youtubeVideos: []
 		};
@@ -54,7 +52,6 @@ class Movie extends Component {
 
 	componentWillMount() {
 		this._retrieveDetails();
-		// this._retrieveSimilarMovies();
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -110,9 +107,6 @@ class Movie extends Component {
 	_getTabHeight(tabName, height) {
 		if (tabName === 'casts') this.setState({ castsTabHeight: height });
 		if (tabName === 'trailers') this.setState({ trailersTabHeight: height });
-		// if (tabName === 'similarTo') this.setState({ similarToTabHeight: height });
-		console.log('tab', tabName);
-		console.log('height', height);
 	}
 
 	_retrieveYoutubeDetails() {
@@ -149,17 +143,14 @@ class Movie extends Component {
 	}
 
 	render() {
-		console.log('Hello');
 		const iconStar = <Icon name="md-star" size={16} color="#F5B642" />;
-		const { details /* similarMovies */ } = this.props;
+		const { details } = this.props;
 		const info = details;
-		// const fiveSimilarMovies = _.take(similarMovies.results, 5);
 
 		let height;
 		if (this.state.tab === 0) height = this.state.infoTabHeight;
 		if (this.state.tab === 1) height = this.state.castsTabHeight;
 		if (this.state.tab === 2) height = this.state.trailersTabHeight;
-		// if (this.state.tab === 2) height = this.state.similarToTabHeight;
 
 		return (this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
 		<ScrollView
@@ -226,7 +217,6 @@ class Movie extends Component {
 						<Info tabLabel="INFO" info={info} />
 						<Casts tabLabel="CASTS" info={info} getTabHeight={this._getTabHeight} />
 						<Trailers tabLabel="TRAILERS" youtubeVideos={this.state.youtubeVideos} openYoutube={this._openYoutube} getTabHeight={this._getTabHeight} />
-						{/* <Similar tabLabel="SIMILAR TO" similarMovies={fiveSimilarMovies} getTabHeight={this._getTabHeight} viewMovie={this._viewMovie} /> */}
 					</ScrollableTabView>
 				</View>
 			</View>
@@ -244,7 +234,6 @@ Movie.navigatorStyle = {
 Movie.propTypes = {
 	actions: PropTypes.object.isRequired,
 	details: PropTypes.object.isRequired,
-	// similarMovies: PropTypes.object.isRequired,
 	navigator: PropTypes.object,
 	movieId: PropTypes.number.isRequired
 };
