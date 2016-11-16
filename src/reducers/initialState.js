@@ -3,8 +3,8 @@ export default {
 		details: {},
 		genres: [],
 		list: {},
-		searchResults: {},
 		nowPlayingMovies: {},
-		popularMovies: {}
+		popularMovies: {},
+		searchResults: {}
 	}
 };

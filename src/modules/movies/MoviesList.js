@@ -5,14 +5,14 @@ import {
 	RefreshControl
 } from 'react-native';
 import axios from 'axios';
-import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 import * as api from '../../constants/api';
 import * as moviesActions from './movies.actions';
-
-import styles from './styles/MoviesList';
-import CardMovie from './components/CardMovie';
+import CardThree from './components/CardThree';
 import ProgressBar from '../_global/ProgressBar';
+import styles from './styles/MoviesList';
 
 class MoviesList extends Component {
 	constructor(props) {
@@ -94,14 +94,15 @@ class MoviesList extends Component {
 	}
 
 	render() {
-		return (this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
+		return (
+			this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
 			<ListView
 				style={styles.container}
 				enableEmptySections
 				onEndReached={type => this._retrieveNextPage(this.props.type)}
 				onEndReachedThreshold={1200}
 				dataSource={this.state.dataSource}
-				renderRow={rowData => <CardMovie info={rowData} viewMovie={this._viewMovie} />}
+				renderRow={rowData => <CardThree info={rowData} viewMovie={this._viewMovie} />}
 				renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.seperator} />}
 				renderFooter={() => <View style={{ height: 50 }}><ProgressBar /></View>}
 				refreshControl={

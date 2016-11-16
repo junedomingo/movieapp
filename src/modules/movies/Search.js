@@ -5,13 +5,13 @@ import {
 	TextInput
 } from 'react-native';
 import axios from 'axios';
-import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 import * as api from '../../constants/api';
 import * as moviesActions from './movies.actions';
-
+import CardThree from './components/CardThree';
 import styles from './styles/Search';
-import CardMovie from './components/CardMovie';
 
 class Search extends Component {
 	constructor(props) {
@@ -100,7 +100,7 @@ class Search extends Component {
 					onEndReached={type => this._retrieveNextPage()}
 					onEndReachedThreshold={1200}
 					dataSource={this.state.dataSource}
-					renderRow={rowData => <CardMovie info={rowData} viewMovie={this._viewMovie} />}
+					renderRow={rowData => <CardThree info={rowData} viewMovie={this._viewMovie} />}
 					renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.seperator} />}
 				/>
 			);

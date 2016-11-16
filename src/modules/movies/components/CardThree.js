@@ -10,21 +10,15 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux';
 
 import { TMDB_IMG_URL } from '../../../constants/api';
-import styles from './styles/CardMovie';
+import styles from './styles/CardThree';
 
-const iconStar = (<Icon name="md-star" size={16} color="#F5B642" />);
+const iconStar = <Icon name="md-star" size={16} color="#F5B642" />;
 
-class CardMovie extends Component {
+class CardThree extends Component {
 
 	constructor(props) {
 		super(props);
-
-		// console.log(this.props.moviesGenres);
 	}
-	// getGenre(ids) {
-	// 	const genre_ids = this.props.moviesGenres;
-	// 	return
-	// }
 
 	render() {
 		const { info, viewMovie } = this.props;
@@ -60,7 +54,7 @@ class CardMovie extends Component {
 	}
 }
 
-CardMovie.propTypes = {
+CardThree.propTypes = {
 	info: PropTypes.object.isRequired,
 	viewMovie: PropTypes.func.isRequired
 };
@@ -71,4 +65,4 @@ function mapStateToProps(state, ownProps) {
 	};
 }
 
-export default connect(mapStateToProps, null)(CardMovie);
+export default connect(mapStateToProps, null)(CardThree);

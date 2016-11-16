@@ -6,15 +6,15 @@ import {
 	View
 } from 'react-native';
 
+import styles from './styles/CardTwo';
 import { TMDB_IMG_URL } from '../../../constants/api';
-import styles from './styles/CardThumb';
 
-const CardThumb = ({ info, viewMovie }) => (
+const CardTwo = ({ info, viewMovie }) => (
 	<TouchableOpacity activeOpacity={0.8} onPress={viewMovie.bind(this, info.id)}>
-		<View style={styles.cardThumbContainer}>
-			<Image source={{ uri: `${TMDB_IMG_URL}/w185/${info.poster_path}` }} style={styles.cardThumbImage} />
-			<View style={styles.cardThumbTitleContainer}>
-				<Text style={styles.cardThumbTitle} numberOfLines={2}>
+		<View style={styles.cardContainer}>
+			<Image source={{ uri: `${TMDB_IMG_URL}/w185/${info.poster_path}` }} style={styles.cardImage} />
+			<View style={styles.cardTitleContainer}>
+				<Text style={styles.cardTitle} numberOfLines={2}>
 					{info.original_title}
 				</Text>
 			</View>
@@ -22,9 +22,9 @@ const CardThumb = ({ info, viewMovie }) => (
 	</TouchableOpacity>
 );
 
-CardThumb.propTypes = {
+CardTwo.propTypes = {
 	info: PropTypes.object.isRequired,
 	viewMovie: PropTypes.func.isRequired
 };
 
-export default CardThumb;
+export default CardTwo;

@@ -2,7 +2,6 @@ import axios from 'axios';
 import * as types from '../../constants/actionTypes';
 import { TMDB_URL, TMDB_API_KEY } from '../../constants/api';
 
-
 // GENRES
 export function retrieveMoviesGenresSuccess(res) {
 	return {
