@@ -122,6 +122,7 @@ class Search extends Component {
 							returnKeyType={'search'}
 							value={this.state.query}
 							onChange={this._handleTextInput}
+							underlineColorAndroid="transparent"
 						/>
 					</View>
 				</View>
