@@ -52,6 +52,6 @@
     "url": "git+ssh://git@bitbucket.org/JuneDomingo/movieapp.git"
   },
   "author": "June Domingo <june@cynder.io>",
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://bitbucket.org/JuneDomingo/movieapp#readme"
 }
