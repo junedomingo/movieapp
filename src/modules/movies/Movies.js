@@ -8,14 +8,14 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Swiper from 'react-native-swiper';
-import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as moviesActions from './movies.actions';
+import { connect } from 'react-redux';
 
-import styles from './styles/Movies';
+import * as moviesActions from './movies.actions';
+import CardOne from './components/CardOne';
+import CardTwo from './components/CardTwo';
 import ProgressBar from '../_global/ProgressBar';
-import CardThumb from './components/CardThumb';
-import CardSwipe from './components/CardSwipe';
+import styles from './styles/Movies';
 
 class Movies extends Component {
 	constructor(props) {
@@ -76,7 +76,8 @@ class Movies extends Component {
 		const iconTop = <Icon name="md-trending-up" size={21} color="#9F9F9F" style={{ width: 22 }} />;
 		const iconUp = <Icon name="md-recording" size={21} color="#9F9F9F" style={{ width: 22 }} />;
 
-		return (this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
+		return (
+			this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
 			<ScrollView
 				style={styles.container}
 				refreshControl={
@@ -93,7 +94,7 @@ class Movies extends Component {
 					showsPagination={false}
 					height={248}>
 					{nowPlayingMovies.results.map(info => (
-						<CardSwipe key={info.id} info={info} viewMovie={this._viewMovie} />
+						<CardOne key={info.id} info={info} viewMovie={this._viewMovie} />
 					))}
 				</Swiper>
 				<View>
@@ -109,7 +110,7 @@ class Movies extends Component {
 					</View>
 					<ScrollView horizontal showsHorizontalScrollIndicator={false}>
 						{popularMovies.results.map(info => (
-							<CardThumb key={info.id} info={info} viewMovie={this._viewMovie} />
+							<CardTwo key={info.id} info={info} viewMovie={this._viewMovie} />
 						))}
 					</ScrollView>
 					<View style={styles.browseList}>

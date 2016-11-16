@@ -3,9 +3,8 @@ export default {
 		details: {},
 		genres: [],
 		list: {},
-		searchResults: {},
 		nowPlayingMovies: {},
-		popularMovies: {}
-		// similarMovies: {}
+		popularMovies: {},
+		searchResults: {}
 	}
 };

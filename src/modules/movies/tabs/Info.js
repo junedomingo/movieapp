@@ -4,8 +4,8 @@ import {
 	View
 } from 'react-native';
 import _ from 'lodash';
-import numeral from 'numeral';
 import moment from 'moment';
+import numeral from 'numeral';
 
 import styles from './styles/Info';
 

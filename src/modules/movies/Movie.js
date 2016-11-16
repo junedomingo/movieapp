@@ -8,23 +8,22 @@ import {
 	ToastAndroid,
 	View
 } from 'react-native';
-import axios from 'axios';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import Swiper from 'react-native-swiper';
+import axios from 'axios';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import * as moviesActions from './movies.actions';
-import { TMDB_IMG_URL, YOUTUBE_API_KEY, YOUTUBE_URL } from '../../constants/api';
 import Casts from './tabs/Casts';
-import Trailers from './tabs/Trailers';
 import DefaultTabBar from '../_global/scrollableTabView/DefaultTabBar';
 import Info from './tabs/Info';
 import ProgressBar from '../_global/ProgressBar';
+import Trailers from './tabs/Trailers';
 import styles from './styles/Movie';
-// import Similar from './tabs/Similar';
+import { TMDB_IMG_URL, YOUTUBE_API_KEY, YOUTUBE_URL } from '../../constants/api';
 
 class Movie extends Component {
 	constructor(props) {
@@ -38,7 +37,6 @@ class Movie extends Component {
 			isRefreshing: false,
 			showSimilarMovies: true,
 			trailersTabHeight: null,
-			// similarToTabHeight: null,
 			tab: 0,
 			youtubeVideos: []
 		};
@@ -54,7 +52,6 @@ class Movie extends Component {
 
 	componentWillMount() {
 		this._retrieveDetails();
-		// this._retrieveSimilarMovies();
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -98,9 +95,7 @@ class Movie extends Component {
 		this.setState({ tab: i });
 	}
 
-	/*
-	* ScrollView onContentSizeChange prop
-	*/
+	// ScrollView onContentSizeChange prop
 	_onContentSizeChange(width, height) {
 		if (this.state.tab === 0 && this.state.infoTabHeight === this.state.castsTabHeight) {
 			this.setState({ infoTabHeight: height });
@@ -110,9 +105,6 @@ class Movie extends Component {
 	_getTabHeight(tabName, height) {
 		if (tabName === 'casts') this.setState({ castsTabHeight: height });
 		if (tabName === 'trailers') this.setState({ trailersTabHeight: height });
-		// if (tabName === 'similarTo') this.setState({ similarToTabHeight: height });
-		console.log('tab', tabName);
-		console.log('height', height);
 	}
 
 	_retrieveYoutubeDetails() {
@@ -149,88 +141,85 @@ class Movie extends Component {
 	}
 
 	render() {
-		console.log('Hello');
 		const iconStar = <Icon name="md-star" size={16} color="#F5B642" />;
-		const { details /* similarMovies */ } = this.props;
+		const { details } = this.props;
 		const info = details;
-		// const fiveSimilarMovies = _.take(similarMovies.results, 5);
 
 		let height;
 		if (this.state.tab === 0) height = this.state.infoTabHeight;
 		if (this.state.tab === 1) height = this.state.castsTabHeight;
 		if (this.state.tab === 2) height = this.state.trailersTabHeight;
-		// if (this.state.tab === 2) height = this.state.similarToTabHeight;
 
-		return (this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
-		<ScrollView
-				style={styles.container}
-				onScroll={this._onScroll.bind(this)}
-				onContentSizeChange={this._onContentSizeChange}
-				refreshControl={
-					<RefreshControl
-						refreshing={this.state.isRefreshing}
-						onRefresh={this._onRefresh}
-						colors={['#EA0000']}
-						progressBackgroundColor="white"
-					/>
-				}>
-			<View style={{ height }}>
-				<Swiper
-					style={styles.swiper}
-					autoplay
-					autoplayTimeout={4}
-					showsPagination={false}
-					height={248}
-					loop
-					index={5}>
-					{
-						info.images.backdrops.map((item, index) => (
-							<View key={index}>
-								<Image source={{ uri: `${TMDB_IMG_URL}/w780/${(item.file_path)}` }} style={styles.imageBackdrop} />
-								<LinearGradient colors={['rgba(0, 0, 0, 0.2)', 'rgba(0,0,0, 0.2)', 'rgba(0,0,0, 0.7)']} style={styles.linearGradient} />
+		return (
+			this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
+			<ScrollView
+					style={styles.container}
+					onScroll={this._onScroll.bind(this)}
+					onContentSizeChange={this._onContentSizeChange}
+					refreshControl={
+						<RefreshControl
+							refreshing={this.state.isRefreshing}
+							onRefresh={this._onRefresh}
+							colors={['#EA0000']}
+							progressBackgroundColor="white"
+						/>
+					}>
+				<View style={{ height }}>
+					<Swiper
+						style={styles.swiper}
+						autoplay
+						autoplayTimeout={4}
+						showsPagination={false}
+						height={248}
+						loop
+						index={5}>
+						{
+							info.images.backdrops.map((item, index) => (
+								<View key={index}>
+									<Image source={{ uri: `${TMDB_IMG_URL}/w780/${(item.file_path)}` }} style={styles.imageBackdrop} />
+									<LinearGradient colors={['rgba(0, 0, 0, 0.2)', 'rgba(0,0,0, 0.2)', 'rgba(0,0,0, 0.7)']} style={styles.linearGradient} />
+								</View>
+							))
+						}
+					</Swiper>
+					<View style={styles.cardContainer}>
+						<Image source={{ uri: `${TMDB_IMG_URL}/w185/${info.poster_path}` }} style={styles.cardImage} />
+						<View style={styles.cardDetails}>
+							<Text style={styles.cardTitle}>{info.original_title}</Text>
+							<Text style={styles.cardTagline}>{info.tagline}</Text>
+							<View style={styles.cardGenre}>
+								{
+									info.genres.map(item => (
+										<Text key={item.id} style={styles.cardGenreItem}>{item.name}</Text>
+									))
+								}
 							</View>
-						))
-					}
-				</Swiper>
-				<View style={styles.cardContainer}>
-					<Image source={{ uri: `${TMDB_IMG_URL}/w185/${info.poster_path}` }} style={styles.cardImage} />
-					<View style={styles.cardDetails}>
-						<Text style={styles.cardTitle}>{info.original_title}</Text>
-						<Text style={styles.cardTagline}>{info.tagline}</Text>
-						<View style={styles.cardGenre}>
-							{
-								info.genres.map(item => (
-									<Text key={item.id} style={styles.cardGenreItem}>{item.name}</Text>
-								))
-							}
-						</View>
-						<View style={styles.cardNumbers}>
-							<View style={styles.cardStar}>
-								{iconStar}
-								<Text style={styles.cardStarRatings}>8.9</Text>
+							<View style={styles.cardNumbers}>
+								<View style={styles.cardStar}>
+									{iconStar}
+									<Text style={styles.cardStarRatings}>8.9</Text>
+								</View>
+								<Text style={styles.cardRunningHours} />
 							</View>
-							<Text style={styles.cardRunningHours} />
 						</View>
 					</View>
+					<View style={styles.contentContainer}>
+						<ScrollableTabView
+							onChangeTab={this._onChangeTab}
+							renderTabBar={() => (
+								<DefaultTabBar
+									textStyle={styles.textStyle}
+									underlineStyle={styles.underlineStyle}
+									style={styles.tabBar}
+								/>
+							)}>
+							<Info tabLabel="INFO" info={info} />
+							<Casts tabLabel="CASTS" info={info} getTabHeight={this._getTabHeight} />
+							<Trailers tabLabel="TRAILERS" youtubeVideos={this.state.youtubeVideos} openYoutube={this._openYoutube} getTabHeight={this._getTabHeight} />
+						</ScrollableTabView>
+					</View>
 				</View>
-				<View style={styles.contentContainer}>
-					<ScrollableTabView
-						onChangeTab={this._onChangeTab}
-						renderTabBar={() => (
-							<DefaultTabBar
-								textStyle={styles.textStyle}
-								underlineStyle={styles.underlineStyle}
-								style={styles.tabBar}
-							/>
-						)}>
-						<Info tabLabel="INFO" info={info} />
-						<Casts tabLabel="CASTS" info={info} getTabHeight={this._getTabHeight} />
-						<Trailers tabLabel="TRAILERS" youtubeVideos={this.state.youtubeVideos} openYoutube={this._openYoutube} getTabHeight={this._getTabHeight} />
-						{/* <Similar tabLabel="SIMILAR TO" similarMovies={fiveSimilarMovies} getTabHeight={this._getTabHeight} viewMovie={this._viewMovie} /> */}
-					</ScrollableTabView>
-				</View>
-			</View>
-		</ScrollView>
+			</ScrollView>
 		);
 	}
 }
@@ -244,7 +233,6 @@ Movie.navigatorStyle = {
 Movie.propTypes = {
 	actions: PropTypes.object.isRequired,
 	details: PropTypes.object.isRequired,
-	// similarMovies: PropTypes.object.isRequired,
 	navigator: PropTypes.object,
 	movieId: PropTypes.number.isRequired
 };

@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-	cardThumbContainer: {
+	cardContainer: {
 		height: 231,
 		width: 135,
 		backgroundColor: 'white',
@@ -9,17 +9,17 @@ const styles = StyleSheet.create({
 		marginRight: 10,
 		borderRadius: 3
 	},
-	cardThumbImage: {
+	cardImage: {
 		width: 135,
 		height: 184,
 		borderTopLeftRadius: 3,
 		borderTopRightRadius: 3
 	},
-	cardThumbTitleContainer: {
+	cardTitleContainer: {
 		flex: 1,
 		justifyContent: 'center'
 	},
-	cardThumbTitle: {
+	cardTitle: {
 		color: 'black',
 		fontSize: 13,
 		fontWeight: '500',

@@ -2,7 +2,6 @@ import axios from 'axios';
 import * as types from '../../constants/actionTypes';
 import { TMDB_URL, TMDB_API_KEY } from '../../constants/api';
 
-
 // GENRES
 export function retrieveMoviesGenresSuccess(res) {
 	return {
@@ -122,23 +121,3 @@ export function retrieveMovieDetails(movieId) {
 		});
 	};
 }
-
-// SIMILAR MOVIES
-// export function retrieveSimilarMoviesSuccess(res) {
-// 	return {
-// 		type: types.RETRIEVE_SIMILAR_MOVIES_SUCCESS,
-// 		similarMovies: res.data
-// 	};
-// }
-//
-// export function retrieveSimilarMovies(movieId, page) {
-// 	return function (dispatch) {
-// 		return axios.get(`${TMDB_URL}/movie/${movieId}/similar?api_key=${TMDB_API_KEY}&page=${page}`)
-// 		.then(res => {
-// 			dispatch(retrieveSimilarMoviesSuccess(res));
-// 		})
-// 		.catch(error => {
-// 			console.log('Similar Movies', error); //eslint-disable-line
-// 		});
-// 	};
-// }
