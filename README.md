@@ -6,7 +6,7 @@ Discover Movies and TV shows
 
 
 ### Download APK file
- - [Download from Google Drive](http://bit.ly/2fXSQKF)
+ - [Download from Google Drive](http://bit.ly/2gjWs9P)
 
 ### What's included
 
