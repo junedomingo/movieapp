@@ -8,7 +8,7 @@ import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as api from '../../constants/api';
+import { TMDB_URL, TMDB_API_KEY } from '../../constants/api';
 import * as moviesActions from './movies.actions';
 import CardThree from './components/CardThree';
 import styles from './styles/Search';
@@ -66,7 +66,7 @@ class Search extends Component {
 				page = this.state.currentPage + 1;
 			}
 
-			axios.get(`${api.URL}/search/movie/?api_key=${api.KEY}&query=${this.state.query}&page=${page}`)
+			axios.get(`${TMDB_URL}/search/movie/?api_key=${TMDB_API_KEY}&query=${this.state.query}&page=${page}`)
 				.then(res => {
 					const data = this.state.searchResults.results;
 					const newData = res.data.results;
