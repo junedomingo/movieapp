@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
 		backgroundColor: '#0a0a0a'
 	},
 	swiper: {
-		position: 'absolute',
-		flex: 1
+		// position: 'absolute',
+		// flex: 1
 	},
 	linearGradient: {
 		top: 0,
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 		position: 'absolute'
 	},
 	imageBackdrop: {
-		flex: 1,
+		// flex: 1,
 		height: 248,
 		backgroundColor: 'black'
 	},

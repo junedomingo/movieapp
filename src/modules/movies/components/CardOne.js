@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import {
 	Image,
 	Text,
-	TouchableNativeFeedback,
+	TouchableOpacity,
 	View
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -36,11 +36,11 @@ const CardOne = ({ info, viewMovie }) => (
 				<Text style={styles.cardDescription} numberOfLines={3}>
 					{info.overview}
 				</Text>
-				<TouchableNativeFeedback background={TouchableNativeFeedback.SelectableBackground()} onPress={viewMovie.bind(this, info.id)}>
+				<TouchableOpacity activeOpacity={0.9} onPress={viewMovie.bind(this, info.id)}>
 					<View style={styles.viewButton}>
 						<Text style={styles.viewButtonText}>View Details</Text>
 					</View>
-				</TouchableNativeFeedback>
+				</TouchableOpacity>
 			</View>
 		</View>
 	</View>

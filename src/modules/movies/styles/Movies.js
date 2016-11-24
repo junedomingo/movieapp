@@ -1,8 +1,13 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: 'black'
+		backgroundColor: 'black',
+		...Platform.select({
+			ios: {
+				paddingTop: 64
+			}
+		})
 	},
 	progressBar: {
 		backgroundColor: '#0a0a0a',
@@ -25,7 +30,14 @@ const styles = StyleSheet.create({
 	},
 	listHeadingRight: {
 		color: 'white',
-		fontSize: 16
+		...Platform.select({
+			ios: {
+				fontSize: 15
+			},
+			android: {
+				fontSize: 16
+			}
+		})
 	},
 	browseList: {
 		marginTop: 30,
@@ -33,15 +45,30 @@ const styles = StyleSheet.create({
 		marginBottom: 30
 	},
 	browseListItem: {
-		paddingVertical: 10,
+		...Platform.select({
+			ios: {
+				paddingVertical: 8
+			},
+			android: {
+				paddingVertical: 10
+			}
+		}),
 		flexDirection: 'row'
 	},
 	browseListItemText: {
 		flex: 1,
 		color: 'white',
 		paddingLeft: 10,
-		fontSize: 16,
-		fontWeight: '100'
+		...Platform.select({
+			ios: {
+				fontSize: 15,
+				fontWeight: '500'
+			},
+			android: {
+				fontSize: 16,
+				fontWeight: '100'
+			}
+		})
 	}
 });
 

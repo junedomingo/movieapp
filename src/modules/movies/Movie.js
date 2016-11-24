@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import {
 	Image,
 	Linking,
+	Platform,
 	RefreshControl,
 	ScrollView,
 	Text,
@@ -48,6 +49,7 @@ class Movie extends Component {
 		this._onScroll = this._onScroll.bind(this);
 		this._viewMovie = this._viewMovie.bind(this);
 		this._openYoutube = this._openYoutube.bind(this);
+		this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
 	}
 
 	componentWillMount() {
@@ -140,6 +142,14 @@ class Movie extends Component {
 		});
 	}
 
+	_onNavigatorEvent(event) {
+		if (event.type === 'NavBarButtonPress') {
+			if (event.id === 'close') {
+				this.props.navigator.dismissModal();
+			}
+		}
+	}
+
 	render() {
 		const iconStar = <Icon name="md-star" size={16} color="#F5B642" />;
 		const { details } = this.props;
@@ -155,12 +165,16 @@ class Movie extends Component {
 			<ScrollView
 					style={styles.container}
 					onScroll={this._onScroll.bind(this)}
+					scrollEventThrottle={100}
 					onContentSizeChange={this._onContentSizeChange}
 					refreshControl={
 						<RefreshControl
 							refreshing={this.state.isRefreshing}
 							onRefresh={this._onRefresh}
 							colors={['#EA0000']}
+							tintColor="white"
+							title="loading..."
+							titleColor="white"
 							progressBackgroundColor="white"
 						/>
 					}>
@@ -226,8 +240,26 @@ class Movie extends Component {
 
 Movie.navigatorStyle = {
 	navBarTransparent: true,
+	drawUnderNavBar: true,
+	navBarTranslucent: true,
+	statusBarHidden: true,
 	navBarTextColor: 'white',
 	navBarButtonColor: 'white'
+};
+
+let rightButtons = [];
+
+if (Platform.OS === 'ios') {
+	rightButtons = [
+		{
+			id: 'close',
+			icon: require('../../img/arrow-down.png') // eslint-disable-line
+		}
+	];
+}
+
+Movie.navigatorButtons = {
+	rightButtons
 };
 
 Movie.propTypes = {

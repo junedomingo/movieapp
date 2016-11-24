@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 	castImage: {
 		width: 80,
 		height: 80,
-		borderRadius: 100
+		borderRadius: 80 / 2
 	},
 	characterContainer: {
 		flex: 1,

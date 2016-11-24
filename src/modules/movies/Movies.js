@@ -4,7 +4,8 @@ import {
 	ScrollView,
 	Text,
 	TouchableOpacity,
-	View
+	View,
+	Platform
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Swiper from 'react-native-swiper';
@@ -28,6 +29,7 @@ class Movies extends Component {
 
 		this._viewMovie = this._viewMovie.bind(this);
 		this._onRefresh = this._onRefresh.bind(this);
+		this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
 	}
 
 	componentWillMount() {
@@ -70,6 +72,17 @@ class Movies extends Component {
 		this._retrieveMovies('isRefreshed');
 	}
 
+	_onNavigatorEvent(event) {
+		if (event.type === 'NavBarButtonPress') {
+			if (event.id === 'search') {
+				this.props.navigator.showModal({
+					screen: 'movieapp.Search',
+					title: 'Search'
+				});
+			}
+		}
+	}
+
 	render() {
 		const { nowPlayingMovies, popularMovies } = this.props;
 		const iconPlay = <Icon name="md-play" size={21} color="#9F9F9F" style={{ paddingLeft: 3, width: 22 }} />;
@@ -85,6 +98,9 @@ class Movies extends Component {
 						refreshing={this.state.isRefreshing}
 						onRefresh={this._onRefresh}
 						colors={['#EA0000']}
+						tintColor="white"
+						title="loading..."
+						titleColor="white"
 						progressBackgroundColor="white"
 					/>
 				}>
@@ -154,6 +170,22 @@ Movies.propTypes = {
 	nowPlayingMovies: PropTypes.object.isRequired,
 	popularMovies: PropTypes.object.isRequired,
 	navigator: PropTypes.object
+};
+
+
+let rightButtons = [];
+
+if (Platform.OS === 'ios') {
+	rightButtons = [
+		{
+			id: 'search',
+			icon: require('../../img/ios-search.png') // eslint-disable-line
+		}
+	];
+}
+
+Movies.navigatorButtons = {
+	rightButtons
 };
 
 function mapStateToProps(state, ownProps) {
