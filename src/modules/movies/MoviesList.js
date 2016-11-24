@@ -160,13 +160,16 @@ if (Platform.OS === 'ios') {
 		navBarTranslucent: true,
 		drawUnderNavBar: true
 	};
+} else {
+	navigatorStyle = {
+		navBarBackgroundColor: '#0a0a0a'
+	};
 }
 
 MoviesList.navigatorStyle = {
 	...navigatorStyle,
 	statusBarColor: 'black',
 	statusBarTextColorScheme: 'light',
-	navBarBackgroundColor: '#0a0a0a',
 	navBarTextColor: 'white',
 	navBarButtonColor: 'white'
 };
