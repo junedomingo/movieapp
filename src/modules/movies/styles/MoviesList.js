@@ -1,9 +1,14 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#0a0a0a'
+		backgroundColor: '#0a0a0a',
+		...Platform.select({
+			ios: {
+				paddingTop: 83
+			}
+		})
 	},
 	progressBar: {
 		backgroundColor: '#0a0a0a',

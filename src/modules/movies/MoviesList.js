@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import {
+	Platform,
 	View,
 	ListView,
 	RefreshControl
@@ -29,6 +30,7 @@ class MoviesList extends Component {
 
 		this._viewMovie = this._viewMovie.bind(this);
 		this._onRefresh = this._onRefresh.bind(this);
+		this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
 	}
 
 	componentWillMount() {
@@ -93,6 +95,14 @@ class MoviesList extends Component {
 		this._retrieveMoviesList('isRefreshed');
 	}
 
+	_onNavigatorEvent(event) {
+		if (event.type === 'NavBarButtonPress') {
+			if (event.id === 'close') {
+				this.props.navigator.dismissModal();
+			}
+		}
+	}
+
 	render() {
 		return (
 			this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
@@ -110,6 +120,9 @@ class MoviesList extends Component {
 						refreshing={this.state.isRefreshing}
 						onRefresh={this._onRefresh}
 						colors={['#EA0000']}
+						tintColor="white"
+						title="loading..."
+						titleColor="white"
 						progressBackgroundColor="white"
 					/>
 				}
@@ -125,7 +138,32 @@ MoviesList.propTypes = {
 	navigator: PropTypes.object
 };
 
+let rightButtons = [];
+
+if (Platform.OS === 'ios') {
+	rightButtons = [
+		{
+			id: 'close',
+			title: 'Close'
+		}
+	];
+}
+
+MoviesList.navigatorButtons = {
+	rightButtons
+};
+
+let navigatorStyle = {};
+
+if (Platform.OS === 'ios') {
+	navigatorStyle = {
+		navBarTranslucent: true,
+		drawUnderNavBar: true
+	};
+}
+
 MoviesList.navigatorStyle = {
+	...navigatorStyle,
 	statusBarColor: 'black',
 	statusBarTextColorScheme: 'light',
 	navBarBackgroundColor: '#0a0a0a',
