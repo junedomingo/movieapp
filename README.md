@@ -2,7 +2,9 @@
 Discover Movies and TV shows
 
 
-![movieapp-screenshots](https://cloud.githubusercontent.com/assets/5106887/20337747/f8d43f1a-ac0d-11e6-9751-5486e9b3c669.png)
+![movieapp-screenshots_big_iphone_](https://cloud.githubusercontent.com/assets/5106887/20606597/f176b3e2-b2ac-11e6-9163-c9e625df7748.png)
+
+
 
 
 ### Download APK file
@@ -20,6 +22,7 @@ Discover Movies and TV shows
 - [Node](https://nodejs.org) `4.x` or newer
 - [React Native](http://facebook.github.io/react-native/docs/getting-started.html) for development
 - [Android Studio](https://developer.android.com/studio/index.html) for Android development
+- [Xcode](https://developer.apple.com/xcode/) for iOS development
 - [Android SDK](https://developer.android.com/sdk/) `23.0.1` or newer for Android development
 - [Genymotion](https://www.genymotion.com/) for Android emulation
 - [YARN](https://yarnpkg.com/) - for dependency management
@@ -32,7 +35,7 @@ Clone this repo
 ```sh
 $ git clone git@github.com:JuneDomingo/movieapp.git
 $ cd movieapp
-$ yarn install
+$ yarn install or npm install
 ```
 
 Create `.env` file in your root directory and add the following
@@ -53,7 +56,8 @@ Get api key -
 ### How to start
 ```sh
 $ react-native run-android
+$ react-native run-ios
 ```
 
-### How to rename
+### How to rename react native app?
 [react-native-rename](https://github.com/JuneDomingo/react-native-rename) - Rename react-native app with just one command
