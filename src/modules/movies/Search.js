@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import {
+	Platform,
 	View,
 	ListView,
 	TextInput
@@ -28,14 +29,13 @@ class Search extends Component {
 
 		this._viewMovie = this._viewMovie.bind(this);
 		this._handleTextInput = this._handleTextInput.bind(this);
+		this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
 	}
 
 	_handleTextInput(event) {
 		const query = event.nativeEvent.text;
 		this.setState({ query });
-		if (!query) {
-			this.setState({ query: '' });
-		}
+		if (!query) this.setState({ query: '' });
 
 		setTimeout(() => {
 			if (query.length) {
@@ -91,6 +91,14 @@ class Search extends Component {
 		});
 	}
 
+	_onNavigatorEvent(event) {
+		if (event.type === 'NavBarButtonPress') {
+			if (event.id === 'close') {
+				this.props.navigator.dismissModal();
+			}
+		}
+	}
+
 	_renderListView() {
 		let listView;
 		if (this.state.query) {
@@ -137,6 +145,21 @@ Search.propTypes = {
 	actions: PropTypes.object.isRequired,
 	searchResults: PropTypes.object.isRequired,
 	navigator: PropTypes.object
+};
+
+let rightButtons = [];
+
+if (Platform.OS === 'ios') {
+	rightButtons = [
+		{
+			id: 'close',
+			title: 'Close'
+		}
+	];
+}
+
+Search.navigatorButtons = {
+	rightButtons
 };
 
 Search.navigatorStyle = {
