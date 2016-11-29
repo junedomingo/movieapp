@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
 		position: 'absolute'
 	},
 	imageBackdrop: {
-		flex: 1,
+		// flex: 1,
 		height: 248,
 		backgroundColor: 'black'
 	},

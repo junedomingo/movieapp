@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
 	container: {
@@ -7,7 +7,14 @@ const styles = StyleSheet.create({
 	},
 	textInput: {
 		backgroundColor: 'white',
-		height: 48
+		...Platform.select({
+			ios: {
+				height: 35
+			},
+			android: {
+				height: 48
+			}
+		})
 	},
 	searchboxBorder: {
 		borderRadius: 3,
