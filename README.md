@@ -59,5 +59,12 @@ $ react-native run-android
 $ react-native run-ios
 ```
 
+
+### Exponent/ex-navigation version
+Brent Vatne did awesome work to make this run on exponent, checkout his [repo](https://github.com/brentvatne/movieapp)
+- [Open this app in exponent](https://getexponent.com/@community/movieapp)
+
+
+
 ### How to rename react native app?
 [react-native-rename](https://github.com/JuneDomingo/react-native-rename) - Rename react-native app with just one command
