@@ -18,14 +18,23 @@ const navigatorStyle = {
 	navBarButtonColor: 'white',
 	tabBarButtonColor: 'red',
 	tabBarSelectedButtonColor: 'red',
-	tabBarBackgroundColor: 'white'
+	tabBarBackgroundColor: 'white',
+	topBarElevationShadowEnabled: false,
+	navBarHideOnScroll: true,
+	tabBarHidden: true,
+	drawUnderTabBar: true
 };
 
 Navigation.startSingleScreenApp({
 	screen: {
 		screen: 'movieapp.Movies',
 		title: 'Movies',
-		navigatorStyle
+		navigatorStyle,
+		leftButtons: [
+			{
+				id: 'sideMenu'
+			}
+		]
 	},
 	drawer: {
 		left: {
