@@ -14,6 +14,7 @@ import * as moviesActions from './movies.actions';
 import CardThree from './components/CardThree';
 import ProgressBar from '../_global/ProgressBar';
 import styles from './styles/MoviesList';
+import { iconsMap } from '../../utils/AppIcons';
 
 class MoviesList extends Component {
 	constructor(props) {
@@ -86,6 +87,15 @@ class MoviesList extends Component {
 			screen: 'movieapp.Movie',
 			passProps: {
 				movieId
+			},
+			backButtonHidden: true,
+			navigatorButtons: {
+				rightButtons: [
+					{
+						id: 'close',
+						icon: iconsMap['ios-arrow-round-down']
+					}
+				]
 			}
 		});
 	}
@@ -136,21 +146,6 @@ MoviesList.propTypes = {
 	list: PropTypes.object.isRequired,
 	type: PropTypes.string.isRequired,
 	navigator: PropTypes.object
-};
-
-let rightButtons = [];
-
-if (Platform.OS === 'ios') {
-	rightButtons = [
-		{
-			id: 'close',
-			title: 'Close'
-		}
-	];
-}
-
-MoviesList.navigatorButtons = {
-	rightButtons
 };
 
 let navigatorStyle = {};

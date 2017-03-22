@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import {
 	Image,
 	Linking,
-	Platform,
 	RefreshControl,
 	ScrollView,
 	Text,
@@ -245,21 +244,6 @@ Movie.navigatorStyle = {
 	statusBarHidden: true,
 	navBarTextColor: 'white',
 	navBarButtonColor: 'white'
-};
-
-let rightButtons = [];
-
-if (Platform.OS === 'ios') {
-	rightButtons = [
-		{
-			id: 'close',
-			icon: require('../../img/arrow-down.png') // eslint-disable-line
-		}
-	];
-}
-
-Movie.navigatorButtons = {
-	rightButtons
 };
 
 Movie.propTypes = {

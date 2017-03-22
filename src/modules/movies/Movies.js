@@ -17,6 +17,7 @@ import CardOne from './components/CardOne';
 import CardTwo from './components/CardTwo';
 import ProgressBar from '../_global/ProgressBar';
 import styles from './styles/Movies';
+import { iconsMap } from '../../utils/AppIcons';
 
 class Movies extends Component {
 	constructor(props) {
@@ -49,11 +50,24 @@ class Movies extends Component {
 	}
 
 	_viewMoviesList(type, title) {
+		let rightButtons = [];
+		if (Platform.OS === 'ios') {
+			rightButtons = [
+				{
+					id: 'close',
+					title: 'Close',
+					icon: iconsMap['ios-close']
+				}
+			];
+		}
 		this.props.navigator.showModal({
 			title,
 			screen: 'movieapp.MoviesList',
 			passProps: {
 				type
+			},
+			navigatorButtons: {
+				rightButtons
 			}
 		});
 	}
@@ -63,6 +77,15 @@ class Movies extends Component {
 			screen: 'movieapp.Movie',
 			passProps: {
 				movieId
+			},
+			backButtonHidden: true,
+			navigatorButtons: {
+				rightButtons: [
+					{
+						id: 'close',
+						icon: iconsMap['ios-arrow-round-down']
+					}
+				]
 			}
 		});
 	}
@@ -75,9 +98,22 @@ class Movies extends Component {
 	_onNavigatorEvent(event) {
 		if (event.type === 'NavBarButtonPress') {
 			if (event.id === 'search') {
+				let rightButtons = [];
+				if (Platform.OS === 'ios') {
+					rightButtons = [
+						{
+							id: 'close',
+							title: 'Close',
+							icon: iconsMap['ios-close']
+						}
+					];
+				}
 				this.props.navigator.showModal({
 					screen: 'movieapp.Search',
-					title: 'Search'
+					title: 'Search',
+					navigatorButtons: {
+						rightButtons
+					}
 				});
 			}
 		}
@@ -170,22 +206,6 @@ Movies.propTypes = {
 	nowPlayingMovies: PropTypes.object.isRequired,
 	popularMovies: PropTypes.object.isRequired,
 	navigator: PropTypes.object
-};
-
-
-let rightButtons = [];
-
-if (Platform.OS === 'ios') {
-	rightButtons = [
-		{
-			id: 'search',
-			icon: require('../../img/ios-search.png') // eslint-disable-line
-		}
-	];
-}
-
-Movies.navigatorButtons = {
-	rightButtons
 };
 
 function mapStateToProps(state, ownProps) {

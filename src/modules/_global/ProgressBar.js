@@ -2,12 +2,13 @@ import React from 'react';
 import {
 	View,
 	ActivityIndicator,
-	StyleSheet
+	StyleSheet,
+	Platform
 } from 'react-native';
 
 const ProgressBar = () => (
 	<View style={styles.progressBar}>
-		<ActivityIndicator size="large" color="#EA0000" />
+		<ActivityIndicator size="large" color={Platform.OS === "ios" ? "white" : "#EA0000"} />
 	</View>
 );
 

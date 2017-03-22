@@ -6,7 +6,10 @@ const icons = {
 	'ios-film-outline': [30],
 	'ios-film': [30],
 	'ios-desktop-outline': [30],
-	'ios-desktop': [30]
+	'ios-desktop': [30],
+	'ios-search': [30],
+	'ios-arrow-round-down': [40],
+	'ios-close': [40]
 };
 
 const iconsMap = {};
