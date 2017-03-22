@@ -17,7 +17,8 @@ const navigatorStyle = {
 	drawUnderNavBar: true,
 	navBarTextColor: 'white',
 	navBarButtonColor: 'white',
-	statusBarTextColorScheme: 'light'
+	statusBarTextColorScheme: 'light',
+	drawUnderTabBar: true
 };
 
 class App extends Component {
@@ -37,7 +38,16 @@ class App extends Component {
 					icon: iconsMap['ios-film-outline'],
 					selectedIcon: iconsMap['ios-film'],
 					title: 'Movies',
-					navigatorStyle
+					navigatorStyle,
+					navigatorButtons: {
+						rightButtons: [
+							{
+								title: 'Search',
+								id: 'search',
+								icon: iconsMap['ios-search']
+							}
+						]
+					}
 				},
 				{
 					label: 'TV Shows',

@@ -42,7 +42,14 @@ const styles = StyleSheet.create({
 	browseList: {
 		marginTop: 30,
 		paddingHorizontal: 16,
-		marginBottom: 30
+		...Platform.select({
+			ios: {
+				marginBottom: 60
+			},
+			android: {
+				marginBottom: 30
+			}
+		})
 	},
 	browseListItem: {
 		...Platform.select({

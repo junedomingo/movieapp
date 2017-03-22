@@ -1,6 +1,5 @@
 import React, { PropTypes, Component } from 'react';
 import {
-	Platform,
 	View,
 	ListView,
 	TextInput
@@ -13,6 +12,7 @@ import { TMDB_URL, TMDB_API_KEY } from '../../constants/api';
 import * as moviesActions from './movies.actions';
 import CardThree from './components/CardThree';
 import styles from './styles/Search';
+import { iconsMap } from '../../utils/AppIcons';
 
 class Search extends Component {
 	constructor(props) {
@@ -87,6 +87,15 @@ class Search extends Component {
 			screen: 'movieapp.Movie',
 			passProps: {
 				movieId
+			},
+			backButtonHidden: true,
+			navigatorButtons: {
+				rightButtons: [
+					{
+						id: 'close',
+						icon: iconsMap['ios-arrow-round-down']
+					}
+				]
 			}
 		});
 	}
@@ -145,21 +154,6 @@ Search.propTypes = {
 	actions: PropTypes.object.isRequired,
 	searchResults: PropTypes.object.isRequired,
 	navigator: PropTypes.object
-};
-
-let rightButtons = [];
-
-if (Platform.OS === 'ios') {
-	rightButtons = [
-		{
-			id: 'close',
-			title: 'Close'
-		}
-	];
-}
-
-Search.navigatorButtons = {
-	rightButtons
 };
 
 Search.navigatorStyle = {
