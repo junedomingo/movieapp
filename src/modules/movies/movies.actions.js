@@ -92,7 +92,7 @@ export function retrieveMoviesSearchResultsSuccess(res) {
 
 export function retrieveMoviesSearchResults(query, page) {
 	return function (dispatch) {
-		return axios.get(`${TMDB_URL}/search/movie/?api_key=${TMDB_API_KEY}&query=${query}&page=${page}`)
+		return axios.get(`${TMDB_URL}/search/movie?api_key=${TMDB_API_KEY}&query=${query}&page=${page}`)
 		.then(res => {
 			dispatch(retrieveMoviesSearchResultsSuccess(res));
 		})
