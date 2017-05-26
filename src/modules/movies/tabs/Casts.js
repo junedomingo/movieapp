@@ -16,7 +16,7 @@ const Casts = ({ info, getTabHeight }) => {
 		<View style={styles.container} onLayout={getTabHeight.bind(this, 'casts', computedHeight)}>
 			{
 				info.casts.cast.map(item => (
-					<View key={item.id} style={styles.castContainer}>
+					<View key={item.cast_id} style={styles.castContainer}>
 						<Image source={{ uri: `${TMDB_IMG_URL}/w185/${item.profile_path}` }} style={styles.castImage} />
 						<View style={styles.characterContainer}>
 							<Text style={styles.characterName}>
