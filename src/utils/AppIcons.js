@@ -16,7 +16,7 @@ const icons = {
 
 const iconsMap = {};
 const iconsLoaded = new Promise((resolve, reject) => {
-	new Promise.all(
+	Promise.all(
 		Object.keys(icons).map(iconName =>
 		// IconName--suffix--other-suffix is just the mapping name in iconsMap
 		Ionicons.getImageSource(
