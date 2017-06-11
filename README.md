@@ -1,32 +1,23 @@
 # movieapp
 Discover Movies and TV shows
 
-
 ![movieapp-screenshots_big_iphone_](https://cloud.githubusercontent.com/assets/5106887/20606597/f176b3e2-b2ac-11e6-9163-c9e625df7748.png)
 
-
-
-
 ### Download APK file
- - [Download from Google Drive](http://bit.ly/2gjWs9P)
+ - [Download from Google Drive - v2.2.1](http://bit.ly/2s9UdxG)
 
 ### What's included
-
-- [React Native](https://facebook.github.io/react-native/) - Build Native Mobile Apps using JavaScript and React
-- [Redux](https://nodejs.org/) - Predictable state container for JavaScript apps
-- [Wix/react-native-navigation](https://github.com/wix/react-native-navigation) - A complete native navigation solution for React Native with optional redux support - nav bars, tabs, drawer, modals
-- [Redux Thunk](https://github.com/gaearon/redux-thunk) - Thunk middleware for Redux
-- [ESLint](http://eslint.org/) - The pluggable linting utility for JavaScript and JSX
+| Name             | Description   |
+| :-------------:|--------------|
+| [React Native](http://facebook.github.io/react-native/releases/0.32/) |  Build Native Mobile Apps using JavaScript and React. |
+| [React Native Navigation](https://github.com/wix/react-native-navigation) | App-wide support for 100% native navigation with an easy cross-platform interface. |
+| [Redux](https://nodejs.org/) | Predictable state container for JavaScript apps.  |
+| [Redux Thunk](https://github.com/gaearon/redux-thunk) | Thunk middleware for Redux | 
+| [ESLint](http://eslint.org/) | The pluggable linting utility for JavaScript and JSX |
 
 ### Requirements
-- [Node](https://nodejs.org) `4.x` or newer
-- [React Native](http://facebook.github.io/react-native/docs/getting-started.html) for development
-- [Android Studio](https://developer.android.com/studio/index.html) for Android development
-- [Xcode](https://developer.apple.com/xcode/) for iOS development
-- [Android SDK](https://developer.android.com/sdk/) `23.0.1` or newer for Android development
-- [Genymotion](https://www.genymotion.com/) for Android emulation
-- [YARN](https://yarnpkg.com/) - for dependency management
-
+- [Node](https://nodejs.org/) >= 5.0.0
+- [npm](https://npmjs.com) >= 3
 
 ### Installation
 
