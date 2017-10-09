@@ -1,4 +1,4 @@
-# movieapp
+# movieapp [![Paypal Donate](https://img.shields.io/badge/paypal-donate-green.svg?style=flat)](https://www.paypal.me/junedomingo)
 Discover Movies and TV shows
 
 <a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/rLaZTxWeQsGAsDnqWnPDEK7u/junedomingo/movieapp'>
