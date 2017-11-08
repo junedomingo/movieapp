@@ -1,10 +1,10 @@
 export default {
-	movies: {
-		details: {},
-		genres: [],
-		list: {},
-		nowPlayingMovies: {},
-		popularMovies: {},
-		searchResults: {}
-	}
+  movies: {
+    details: {},
+    genres: [],
+    list: {},
+    nowPlayingMovies: {},
+    popularMovies: {},
+    searchResults: {},
+  },
 };

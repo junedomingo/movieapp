@@ -1,10 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import {
-	Platform,
-	View,
-	ListView,
-	RefreshControl
-} from 'react-native';
+import { Platform, View, ListView, RefreshControl } from 'react-native';
 import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -17,168 +12,182 @@ import styles from './styles/MoviesList';
 import { iconsMap } from '../../utils/AppIcons';
 
 class MoviesList extends Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.state = {
-			isLoading: true,
-			isRefreshing: false,
-			currentPage: 1,
-			list: {
-				results: []
-			}
-		};
+    this.state = {
+      isLoading: true,
+      isRefreshing: false,
+      currentPage: 1,
+      list: {
+        results: [],
+      },
+    };
 
-		this._viewMovie = this._viewMovie.bind(this);
-		this._onRefresh = this._onRefresh.bind(this);
-		this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
-	}
+    this._viewMovie = this._viewMovie.bind(this);
+    this._onRefresh = this._onRefresh.bind(this);
+    this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
+  }
 
-	componentWillMount() {
-		this._retrieveMoviesList();
-	}
+  componentWillMount() {
+    this._retrieveMoviesList();
+  }
 
-	_retrieveMoviesList(isRefreshed) {
-		this.props.actions.retrieveMoviesList(this.props.type, this.state.currentPage)
-			.then(() => {
-				const ds = new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 });
-				const dataSource = ds.cloneWithRows(this.props.list.results);
-				this.setState({
-					list: this.props.list,
-					dataSource,
-					isLoading: false
-				});
-			});
-		if (isRefreshed && this.setState({ isRefreshing: false }));
-	}
+  _retrieveMoviesList(isRefreshed) {
+    this.props.actions
+      .retrieveMoviesList(this.props.type, this.state.currentPage)
+      .then(() => {
+        const ds = new ListView.DataSource({
+          rowHasChanged: (row1, row2) => row1 !== row2,
+        });
+        const dataSource = ds.cloneWithRows(this.props.list.results);
+        this.setState({
+          list: this.props.list,
+          dataSource,
+          isLoading: false,
+        });
+      });
+    if (isRefreshed && this.setState({ isRefreshing: false }));
+  }
 
-	_retrieveNextPage(type) {
-		if (this.state.currentPage !== this.props.list.total_pages) {
-			this.setState({
-				currentPage: this.state.currentPage + 1
-			});
+  _retrieveNextPage(type) {
+    if (this.state.currentPage !== this.props.list.total_pages) {
+      this.setState({
+        currentPage: this.state.currentPage + 1,
+      });
 
-			let page;
-			if (this.state.currentPage === 1) {
-				page = 2;
-				this.setState({ currentPage: 2 });
-			} else {
-				page = this.state.currentPage + 1;
-			}
+      let page;
+      if (this.state.currentPage === 1) {
+        page = 2;
+        this.setState({ currentPage: 2 });
+      } else {
+        page = this.state.currentPage + 1;
+      }
 
-			axios.get(`${TMDB_URL}/movie/${type}?api_key=${TMDB_API_KEY}&page=${page}`)
-				.then(res => {
-					const data = this.state.list.results;
-					const newData = res.data.results;
+      axios
+        .get(`${TMDB_URL}/movie/${type}?api_key=${TMDB_API_KEY}&page=${page}`)
+        .then(res => {
+          const data = this.state.list.results;
+          const newData = res.data.results;
 
-					newData.map((item, index) => data.push(item));
+          newData.map((item, index) => data.push(item));
 
-					this.setState({
-						dataSource: this.state.dataSource.cloneWithRows(this.state.list.results)
-					});
-				}).catch(err => {
-					console.log('next page', err); // eslint-disable-line
-				});
-		}
-	}
+          this.setState({
+            dataSource: this.state.dataSource.cloneWithRows(this.state.list.results),
+          });
+        })
+        .catch(err => {
+          console.log('next page', err); // eslint-disable-line
+        });
+    }
+  }
 
-	_viewMovie(movieId) {
-		this.props.navigator.showModal({
-			screen: 'movieapp.Movie',
-			passProps: {
-				movieId
-			},
-			backButtonHidden: true,
-			navigatorButtons: {
-				rightButtons: [
-					{
-						id: 'close',
-						icon: iconsMap['ios-arrow-round-down']
-					}
-				]
-			}
-		});
-	}
+  _viewMovie(movieId) {
+    this.props.navigator.showModal({
+      screen: 'movieapp.Movie',
+      passProps: {
+        movieId,
+      },
+      backButtonHidden: true,
+      navigatorButtons: {
+        rightButtons: [
+          {
+            id: 'close',
+            icon: iconsMap['ios-arrow-round-down'],
+          },
+        ],
+      },
+    });
+  }
 
-	_onRefresh() {
-		this.setState({ isRefreshing: true });
-		this._retrieveMoviesList('isRefreshed');
-	}
+  _onRefresh() {
+    this.setState({ isRefreshing: true });
+    this._retrieveMoviesList('isRefreshed');
+  }
 
-	_onNavigatorEvent(event) {
-		if (event.type === 'NavBarButtonPress') {
-			if (event.id === 'close') {
-				this.props.navigator.dismissModal();
-			}
-		}
-	}
+  _onNavigatorEvent(event) {
+    if (event.type === 'NavBarButtonPress') {
+      if (event.id === 'close') {
+        this.props.navigator.dismissModal();
+      }
+    }
+  }
 
-	render() {
-		return (
-			this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
-			<ListView
-				style={styles.container}
-				enableEmptySections
-				onEndReached={type => this._retrieveNextPage(this.props.type)}
-				onEndReachedThreshold={1200}
-				dataSource={this.state.dataSource}
-				renderRow={rowData => <CardThree info={rowData} viewMovie={this._viewMovie} />}
-				renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.seperator} />}
-				renderFooter={() => <View style={{ height: 50 }}><ProgressBar /></View>}
-				refreshControl={
-					<RefreshControl
-						refreshing={this.state.isRefreshing}
-						onRefresh={this._onRefresh}
-						colors={['#EA0000']}
-						tintColor="white"
-						title="loading..."
-						titleColor="white"
-						progressBackgroundColor="white"
-					/>
-				}
-			/>
-		);
-	}
+  render() {
+    return this.state.isLoading ? (
+      <View style={styles.progressBar}>
+        <ProgressBar />
+      </View>
+    ) : (
+      <ListView
+        style={styles.container}
+        enableEmptySections
+        onEndReached={type => this._retrieveNextPage(this.props.type)}
+        onEndReachedThreshold={1200}
+        dataSource={this.state.dataSource}
+        renderRow={rowData => <CardThree info={rowData} viewMovie={this._viewMovie} />}
+        renderSeparator={(sectionId, rowId) => (
+          <View key={rowId} style={styles.seperator} />
+        )}
+        renderFooter={() => (
+          <View style={{ height: 50 }}>
+            <ProgressBar />
+          </View>
+        )}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.isRefreshing}
+            onRefresh={this._onRefresh}
+            colors={['#EA0000']}
+            tintColor="white"
+            title="loading..."
+            titleColor="white"
+            progressBackgroundColor="white"
+          />
+        }
+      />
+    );
+  }
 }
 
 MoviesList.propTypes = {
-	actions: PropTypes.object.isRequired,
-	list: PropTypes.object.isRequired,
-	type: PropTypes.string.isRequired,
-	navigator: PropTypes.object
+  actions: PropTypes.object.isRequired,
+  list: PropTypes.object.isRequired,
+  type: PropTypes.string.isRequired,
+  navigator: PropTypes.object,
 };
 
 let navigatorStyle = {};
 
 if (Platform.OS === 'ios') {
-	navigatorStyle = {
-		navBarTranslucent: true,
-		drawUnderNavBar: true
-	};
+  navigatorStyle = {
+    navBarTranslucent: true,
+    drawUnderNavBar: true,
+  };
 } else {
-	navigatorStyle = {
-		navBarBackgroundColor: '#0a0a0a'
-	};
+  navigatorStyle = {
+    navBarBackgroundColor: '#0a0a0a',
+  };
 }
 
 MoviesList.navigatorStyle = {
-	...navigatorStyle,
-	statusBarColor: 'black',
-	statusBarTextColorScheme: 'light',
-	navBarTextColor: 'white',
-	navBarButtonColor: 'white'
+  ...navigatorStyle,
+  statusBarColor: 'black',
+  statusBarTextColorScheme: 'light',
+  navBarTextColor: 'white',
+  navBarButtonColor: 'white',
 };
 
 function mapStateToProps(state, ownProps) {
-	return {
-		list: state.movies.list
-	};
+  return {
+    list: state.movies.list,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-	return {
-		actions: bindActionCreators(moviesActions, dispatch)
-	};
+  return {
+    actions: bindActionCreators(moviesActions, dispatch),
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviesList);
