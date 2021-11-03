@@ -5,7 +5,7 @@ Discover Movies and TV shows
 ![movieapp-screenshots_big_iphone_](https://cloud.githubusercontent.com/assets/5106887/20606597/f176b3e2-b2ac-11e6-9163-c9e625df7748.png)
 
 ### Download APK file
- - [Download from Google Drive - v2.2.1](http://bit.ly/2s9UdxG)
+ - [Download from Google Drive - v2.2.1](https://bit.ly/3nWFZLX)
 
 ### What's included
 | Name             | Description   |
